@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
+const sass = require("sass");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
@@ -8,7 +9,9 @@ module.exports = {
   mode: "development",
   entry: {
     cardsInfo: "./src/scripts/cardsInfo.js",
-    cardsImages: "./src/scripts/cardsImagesImport.js"
+    cardsImages: "./src/scripts/cardsImagesImport.js",
+    pageRender: "./src/scripts/pageRender.js",
+    stylesImport: "./src/scripts/stylesImport.js"
   },
   devtool: "eval-source-map",
   output: {
@@ -18,7 +21,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       filename: "index.html",
-      chunks: ["carsInfo", "cardsImages"],
+      chunks: ["carsInfo", "cardsImages", "pageRender", "stylesImport"],
       template: "src/index.html",
     }),
     new MiniCssExtractPlugin({
@@ -37,9 +40,20 @@ module.exports = {
         loader: "file-loader",
         options: {
           name: '[name].[ext]',
-          outputPath: "assets/images",
+          outputPath: "images",
         }
-      }
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          // Creates `style` nodes from JS strings
+          "style-loader",
+          // Translates CSS into CommonJS
+          "css-loader",
+          // Compiles Sass to CSS
+          "sass-loader",
+        ],
+      },
     ],
   },
   stats: {
