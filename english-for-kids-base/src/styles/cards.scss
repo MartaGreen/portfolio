@@ -4,6 +4,66 @@
   width: 900px;
   margin: 0 auto;
 
+  .header {
+    height: 150px;
+    width: 100%;
+
+    margin-bottom: 20px;
+
+    .burgerMenu {
+      position: absolute;
+      left: 0px;
+      top: 50px;
+
+      width: 35px;
+      height: 25px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      cursor: pointer;
+
+      .burgerMenuItem {
+        background-color: rgb(194, 189, 189);
+        width: 100%;
+        height: 4px;
+        border-radius: 5px;
+
+        transition: .7s;
+      }
+
+      .burgerMenuItem {
+        transform: none;
+
+        // &#burgerMenuItem2 {
+        //   transition: 0;
+        // }
+        // &#burgerMenuItem1 {
+        //   transition: 1s;
+        //   // transform: rotate(60deg);
+        // }
+        // &#burgerMenuItem3 {
+        //   transition: 1s;
+        //   // transform: rotate(-60deg);
+        // }
+      }
+    }
+
+    .switchModeContainer {
+      position: absolute;
+      top: 50px;
+      right: 0px;
+
+      width: 100px;
+      height: 50px;
+
+      .switchModeInput {
+        width: 50%;
+      }
+    }
+  }
+
   .block {
     width: 100%;
 
@@ -29,5 +89,23 @@
 
   .page {
     visibility: visible;
+  }
+
+  &.openedMenu {
+    .burgerMenuItem {
+      position: absolute;
+      &#burgerMenuItem2 {
+        visibility: hidden;
+        transition: 0s;
+      }
+      &#burgerMenuItem1 {
+        top: 44%;
+        transform: rotate(45deg);
+      }
+      &#burgerMenuItem3 {
+        top: 44%;
+        transform: rotate(-45deg);
+      }
+    }
   }
 }
