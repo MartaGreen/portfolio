@@ -1,4 +1,4 @@
-import { Card } from "../scripts/cards";
+import { Category } from "../scripts/cards";
 import { cards } from "../scripts/cardsInfo";
 import { openMenu } from "../scripts/pageFunc";
 const CATEGORIES_NAME_CARDS_SRC = [
@@ -11,10 +11,7 @@ const CATEGORIES_NAME_CARDS_SRC = [
     "colors",
     "transports",
 ];
-const page = () => {
-    const main = document.createElement("main");
-    main.setAttribute("class", "main");
-    document.body.appendChild(main);
+const pageHeader = () => {
     // header rendering
     const header = document.createElement("header");
     header.setAttribute("class", "header");
@@ -37,16 +34,21 @@ const page = () => {
     switchModeContainer.appendChild(switchModeInput);
     switchModeContainer.appendChild(switchModeLable);
     header.appendChild(switchModeContainer);
-    main.appendChild(header);
+    document.body.appendChild(header);
+};
+const pageMain = () => {
+    const main = document.createElement("main");
+    main.setAttribute("class", "main");
+    document.body.appendChild(main);
     // main page rendering
     const mainPage = document.createElement("div");
     mainPage.setAttribute("class", "page mainPage block");
     CATEGORIES_NAME_CARDS_SRC.forEach((category) => {
-        const card = new Card(cards[category].mainImage);
+        const card = new Category(cards[category].mainImage, category);
         const cardImg = card.render();
         console.log(cards[category].mainImage);
         mainPage.appendChild(cardImg);
-        card.flip();
+        card.loadCategoryCards();
     });
     // categories page rendering
     const categoriesPage = document.createElement("div");
@@ -54,6 +56,7 @@ const page = () => {
     main.appendChild(mainPage);
     main.appendChild(categoriesPage);
 };
-page();
+pageHeader();
+pageMain();
 openMenu();
 //# sourceMappingURL=pageRender.js.map

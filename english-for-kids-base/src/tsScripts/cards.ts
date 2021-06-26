@@ -1,12 +1,16 @@
-export class Card {
+import { cards } from "../scripts/cardsInfo";
+
+class Card {
   stage: string;
   src: string;
   canvasContainer: HTMLDivElement;
-  constructor(src) {
+  name: string;
+  constructor(src, name) {
     this.stage = "";
     this.src = src;
     this.canvasContainer = document.createElement("div");
-    this.canvasContainer.setAttribute("class", "imgContainer");
+    this.canvasContainer.setAttribute("class", "cardContainer");
+    this.name = name;
   }
 
   render() {
@@ -24,13 +28,56 @@ export class Card {
       this.canvasContainer.appendChild(canvas);
     };
 
+    const cardName: HTMLDivElement = document.createElement("div");
+    cardName.setAttribute("class", "cardName");
+    cardName.innerHTML = this.name;
+    this.canvasContainer.appendChild(cardName);
+
     return this.canvasContainer;
   }
+}
 
+class CategoryCard extends Card {
+  src: string;
+  name: string;
+  translate: string;
+  audioSrc: string;
+  constructor(src, name, translate, audioSrc) {
+    super(src, name);
+    this.translate = translate;
+    this.audioSrc = audioSrc;
+  }
   flip() {
-    this.stage = "flipped";
+    this.canvasContainer.addEventListener("click", function clickEvent() {
+      console.log("klick");
+    })
+  }
+}
+
+export class Category extends Card {
+  loadCategoryCards() {
     this.canvasContainer.addEventListener("click", () => {
-      console.log("click");
+      const mainPage: HTMLDivElement = document.querySelector(".mainPage");
+      const categoriesPage: HTMLDivElement =
+        document.querySelector(".categoriesPage");
+
+      categoriesPage.innerHTML = "";
+      const categoryCardsInfo = cards[this.name].data;
+      categoryCardsInfo.forEach((categoryCardInfo) => {
+        const createCard = new CategoryCard(
+          categoryCardInfo.image,
+          categoryCardInfo.word,
+          categoryCardInfo.translate,
+          categoryCardInfo.audioSrc
+        );
+        const card = createCard.render();
+        createCard.flip();
+
+        categoriesPage.appendChild(card);
+      });
+
+      mainPage.classList.remove("page");
+      categoriesPage.classList.add("page");
     });
   }
 }
