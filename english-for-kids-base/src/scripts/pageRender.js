@@ -46,7 +46,6 @@ const pageMain = () => {
     CATEGORIES_NAME_CARDS_SRC.forEach((category) => {
         const card = new Category(cards[category].mainImage, category);
         const cardImg = card.render();
-        console.log(cards[category].mainImage);
         mainPage.appendChild(cardImg);
         card.loadCategoryCards();
     });

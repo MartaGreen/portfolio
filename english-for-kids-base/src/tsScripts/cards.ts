@@ -1,39 +1,49 @@
 import { cards } from "../scripts/cardsInfo";
 
-class Card {
-  stage: string;
-  src: string;
-  canvasContainer: HTMLDivElement;
-  name: string;
-  constructor(src, name) {
-    this.stage = "";
-    this.src = src;
-    this.canvasContainer = document.createElement("div");
-    this.canvasContainer.setAttribute("class", "cardContainer");
-    this.name = name;
-  }
+function createCard(src: string, name: string) {
+  const canvContainer:HTMLDivElement = document.createElement("div");
+    canvContainer.setAttribute("class", "canvContainer");
 
-  render() {
     const canvas: HTMLCanvasElement = document.createElement("canvas");
     const ctx: CanvasRenderingContext2D = canvas.getContext("2d");
 
     const image = new Image();
-    image.src = this.src;
+    image.src = src;
 
     image.onload = () => {
       image.width = canvas.width;
       image.height = canvas.height;
       ctx.drawImage(image, 0, 0, image.width, image.height);
 
-      this.canvasContainer.appendChild(canvas);
+      canvContainer.appendChild(canvas);
     };
 
     const cardName: HTMLDivElement = document.createElement("div");
     cardName.setAttribute("class", "cardName");
-    cardName.innerHTML = this.name;
-    this.canvasContainer.appendChild(cardName);
+    cardName.innerHTML = name;
+    
+    canvContainer.appendChild(cardName);
+    return canvContainer;
+}
 
-    return this.canvasContainer;
+class Card {
+  stage: string;
+  src: string;
+  cardContainer: HTMLDivElement;
+  name: string;
+  constructor(src, name) {
+    this.stage = "";
+    this.src = src;
+    this.cardContainer = document.createElement("div");
+    this.cardContainer.setAttribute("class", "cardContainer");
+    this.name = name;
+  }
+
+  render() {
+    const canvContainer: HTMLDivElement = createCard(this.src, this.name);
+    this.cardContainer.appendChild(canvContainer);
+
+    return this.cardContainer;
   }
 }
 
@@ -47,16 +57,44 @@ class CategoryCard extends Card {
     this.translate = translate;
     this.audioSrc = audioSrc;
   }
+
+  render() {
+    super.render();
+    const backCanvContainer: HTMLDivElement = createCard(this.src, this.translate);
+    this.cardContainer.appendChild(backCanvContainer);
+
+    const canvConts = this.cardContainer.querySelectorAll(".canvContainer");
+    canvConts[0].classList.add("frontCard");
+    canvConts[1].classList.add("backCard");
+
+    const flipBtn: HTMLButtonElement = document.createElement("button");
+    flipBtn.setAttribute("class", "flipBtn");
+    canvConts[0].appendChild(flipBtn);
+
+    return this.cardContainer;
+  }
+
   flip() {
-    this.canvasContainer.addEventListener("click", function clickEvent() {
+    const flipBtn: HTMLButtonElement = this.cardContainer.querySelector(".flipBtn");
+    const cardContainer: HTMLDivElement = this.cardContainer;
+    flipBtn.addEventListener("click", function clickEvent() {
       console.log("klick");
+      const frontCard: HTMLButtonElement = cardContainer.querySelector(".frontCard");
+      const backCard: HTMLButtonElement = cardContainer.querySelector(".backCard");
+
+      frontCard.classList.remove("frontCard");
+      backCard.classList.remove("backCard");
+      backCard.classList.add("frontCard");
+      frontCard.classList.add("backCard");
+      frontCard.classList.add("flipBack");
+      backCard.classList.add("flipFront");
     })
   }
 }
 
 export class Category extends Card {
   loadCategoryCards() {
-    this.canvasContainer.addEventListener("click", () => {
+    this.cardContainer.addEventListener("click", () => {
       const mainPage: HTMLDivElement = document.querySelector(".mainPage");
       const categoriesPage: HTMLDivElement =
         document.querySelector(".categoriesPage");
@@ -67,7 +105,7 @@ export class Category extends Card {
         const createCard = new CategoryCard(
           categoryCardInfo.image,
           categoryCardInfo.word,
-          categoryCardInfo.translate,
+          categoryCardInfo.translation,
           categoryCardInfo.audioSrc
         );
         const card = createCard.render();
