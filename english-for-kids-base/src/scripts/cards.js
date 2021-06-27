@@ -18,6 +18,12 @@ function createCard(src, name) {
     canvContainer.appendChild(cardName);
     return canvContainer;
 }
+function createAudio(src, classes) {
+    const newAudio = document.createElement("audio");
+    newAudio.src = src;
+    classes.forEach(cls => newAudio.classList.add(cls));
+    return newAudio;
+}
 class Card {
     constructor(src, name) {
         this.stage = "";
@@ -42,6 +48,8 @@ class CategoryCard extends Card {
         super.render();
         const backCanvContainer = createCard(this.src, this.translate);
         this.cardContainer.appendChild(backCanvContainer);
+        this.sound = createAudio(this.audioSrc, ["sound"]);
+        this.cardContainer.appendChild(this.sound);
         const canvConts = this.cardContainer.querySelectorAll(".canvContainer");
         canvConts[0].classList.add("frontCard");
         canvConts[1].classList.add("backCard");
@@ -49,6 +57,16 @@ class CategoryCard extends Card {
         flipBtn.setAttribute("class", "flipBtn");
         canvConts[0].appendChild(flipBtn);
         return this.cardContainer;
+    }
+    playSound() {
+        this.cardContainer.addEventListener("click", (event) => {
+            const flipBtn = this.cardContainer.querySelector(".flipBtn");
+            if (event.target !== flipBtn) {
+                console.log(event.target);
+                console.log("play sound");
+                this.sound.play();
+            }
+        });
     }
     flip() {
         const flipBtn = this.cardContainer.querySelector(".flipBtn");
@@ -77,6 +95,7 @@ export class Category extends Card {
                 const createCard = new CategoryCard(categoryCardInfo.image, categoryCardInfo.word, categoryCardInfo.translation, categoryCardInfo.audioSrc);
                 const card = createCard.render();
                 createCard.flip();
+                createCard.playSound();
                 categoriesPage.appendChild(card);
             });
             mainPage.classList.remove("page");

@@ -13,7 +13,7 @@ import "../assets/images/animals/bear.jpg";
 import "../assets/images/animals/dog.jpg";
 import "../assets/images/animals/sheep.jpg";
 import "../assets/images/animals/cow.jpg";
-import "../assets/images/animals/parrot.jpg";
+import "../assets/images/animals/mouse.jpg";
 import "../assets/images/animals/fox.jpg";
 import "../assets/images/animals/fish.jpg";
 //# sourceMappingURL=cardsImagesImport.js.map

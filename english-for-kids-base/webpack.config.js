@@ -1,9 +1,9 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+
 const path = require("path");
-const sass = require("sass");
+
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-
 
 module.exports = {
   mode: "development",
@@ -11,7 +11,8 @@ module.exports = {
     cardsInfo: "./src/scripts/cardsInfo.js",
     cardsImages: "./src/scripts/cardsImagesImport.js",
     pageRender: "./src/scripts/pageRender.js",
-    stylesImport: "./src/scripts/stylesImport.js"
+    stylesImport: "./src/scripts/stylesImport.js",
+    soundsImport: "./src/scripts/soundsImport.js",
   },
   devtool: "eval-source-map",
   output: {
@@ -21,7 +22,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       filename: "index.html",
-      chunks: ["carsInfo", "cardsImages", "pageRender", "stylesImport"],
+      chunks: ["carsInfo", "cardsImages", "pageRender", "stylesImport", "soundsImport"],
       template: "src/index.html",
     }),
     new MiniCssExtractPlugin({
@@ -39,9 +40,9 @@ module.exports = {
         test: /\.(jpg|png|gif|svg)$/,
         loader: "file-loader",
         options: {
-          name: '[name].[ext]',
+          name: "[name].[ext]",
           outputPath: "images",
-        }
+        },
       },
       {
         test: /\.s[ac]ss$/i,
@@ -53,6 +54,14 @@ module.exports = {
           // Compiles Sass to CSS
           "sass-loader",
         ],
+      },
+      {
+        test: /\.mp3$/,
+        loader: "file-loader",
+        options: {
+          outputPath: "sounds",
+          name: '[name].[ext]',
+        },
       },
     ],
   },
