@@ -99,22 +99,32 @@ class CategoryCard extends Card {
         });
     }
 }
-export class Category extends Card {
+export class CategoryName extends Card {
     loadCategoryCards() {
-        this.cardContainer.addEventListener("click", () => {
-            const mainPage = document.querySelector(".mainPage");
-            const categoriesPage = document.querySelector(".categoriesPage");
-            categoriesPage.innerHTML = "";
-            const categoryCardsInfo = cards[this.name].data;
-            categoryCardsInfo.forEach((categoryCardInfo) => {
-                const createCard = new CategoryCard(categoryCardInfo.image, categoryCardInfo.word, categoryCardInfo.translation, categoryCardInfo.audioSrc);
-                const card = createCard.render();
-                createCard.flip();
-                createCard.playSound();
-                categoriesPage.appendChild(card);
+        const navPage = document.getElementById(`${this.name}_nav`);
+        const addEventItems = [
+            this.cardContainer,
+            navPage
+        ];
+        addEventItems.forEach((item) => {
+            item.addEventListener("click", () => {
+                const activeNavPage = document.querySelector(".navMenuItemActive");
+                activeNavPage.classList.remove("navMenuItemActive");
+                navPage.classList.add("navMenuItemActive");
+                const mainPage = document.querySelector(".mainPage");
+                const categoriesPage = document.querySelector(".categoriesPage");
+                categoriesPage.innerHTML = "";
+                const categoryCardsInfo = cards[this.name].data;
+                categoryCardsInfo.forEach((categoryCardInfo) => {
+                    const createCard = new CategoryCard(categoryCardInfo.image, categoryCardInfo.word, categoryCardInfo.translation, categoryCardInfo.audioSrc);
+                    const card = createCard.render();
+                    createCard.flip();
+                    createCard.playSound();
+                    categoriesPage.appendChild(card);
+                });
+                mainPage.classList.remove("page");
+                categoriesPage.classList.add("page");
             });
-            mainPage.classList.remove("page");
-            categoriesPage.classList.add("page");
         });
     }
 }

@@ -19,6 +19,50 @@ body {
         transform: rotate(-45deg);
       }
     }
+
+    .menu {
+      left: 0;
+    }
+  }
+}
+
+.menu {
+  position: absolute;
+  top: 0;
+  left: -300px;
+
+  width: 300px;
+  height: 100vh;
+
+  // background: linear-gradient(to bottom, orange, red);
+  background: linear-gradient(to bottom, #14b136, #0e0e0e);
+  border-right: 3px solid yellow;
+  transition: 0.7s;
+  z-index: 2000;
+
+  .navMenu {
+    position: absolute;
+    top: 150px;
+    left: 50px;
+
+    list-style: none;
+
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+
+    .navMenuItem {
+      margin-bottom: 20px;
+
+      &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+
+      &.navMenuItemActive {
+        text-decoration: underline;
+      }
+    }
   }
 }
 
@@ -43,6 +87,8 @@ body {
 
     cursor: pointer;
 
+    z-index: 3000;
+
     .burgerMenuItem {
       background-color: rgb(194, 189, 189);
       width: 100%;
@@ -50,9 +96,7 @@ body {
       border-radius: 5px;
 
       transition: 0.7s;
-    }
 
-    .burgerMenuItem {
       transform: none;
     }
   }

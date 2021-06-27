@@ -50,8 +50,8 @@ function createFlipBtn() {
       c133.206,0,175.425-126.655,175.425-126.655S238.747,377.408,133.932,297.341z"/>
   </g>
   </svg>
-  `
-  return flipBtn
+  `;
+  return flipBtn;
 }
 
 class Card {
@@ -110,7 +110,8 @@ class CategoryCard extends Card {
 
   playSound() {
     this.cardContainer.addEventListener("click", (event) => {
-      const flipBtn:HTMLElement = this.cardContainer.querySelector(".flipBtnImg");
+      const flipBtn: HTMLElement =
+        this.cardContainer.querySelector(".flipBtnImg");
       if (event.target !== flipBtn) {
         this.sound.play();
       }
@@ -138,31 +139,42 @@ class CategoryCard extends Card {
   }
 }
 
-export class Category extends Card {
+export class CategoryName extends Card {
   loadCategoryCards() {
-    this.cardContainer.addEventListener("click", () => {
-      const mainPage: HTMLDivElement = document.querySelector(".mainPage");
-      const categoriesPage: HTMLDivElement =
-        document.querySelector(".categoriesPage");
+    const navPage: HTMLElement = document.getElementById(`${this.name}_nav`);
+    const addEventItems = [
+      this.cardContainer,
+      navPage
+    ];
+    addEventItems.forEach((item) => {
+      item.addEventListener("click", () => {
+        const activeNavPage: HTMLElement = document.querySelector(".navMenuItemActive");
+        activeNavPage.classList.remove("navMenuItemActive");
+        navPage.classList.add("navMenuItemActive");
 
-      categoriesPage.innerHTML = "";
-      const categoryCardsInfo = cards[this.name].data;
-      categoryCardsInfo.forEach((categoryCardInfo) => {
-        const createCard = new CategoryCard(
-          categoryCardInfo.image,
-          categoryCardInfo.word,
-          categoryCardInfo.translation,
-          categoryCardInfo.audioSrc
-        );
-        const card = createCard.render();
-        createCard.flip();
-        createCard.playSound();
+        const mainPage: HTMLDivElement = document.querySelector(".mainPage");
+        const categoriesPage: HTMLDivElement =
+          document.querySelector(".categoriesPage");
 
-        categoriesPage.appendChild(card);
+        categoriesPage.innerHTML = "";
+        const categoryCardsInfo = cards[this.name].data;
+        categoryCardsInfo.forEach((categoryCardInfo) => {
+          const createCard = new CategoryCard(
+            categoryCardInfo.image,
+            categoryCardInfo.word,
+            categoryCardInfo.translation,
+            categoryCardInfo.audioSrc
+          );
+          const card = createCard.render();
+          createCard.flip();
+          createCard.playSound();
+
+          categoriesPage.appendChild(card);
+        });
+
+        mainPage.classList.remove("page");
+        categoriesPage.classList.add("page");
       });
-
-      mainPage.classList.remove("page");
-      categoriesPage.classList.add("page");
     });
   }
 }

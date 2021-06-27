@@ -1,4 +1,4 @@
-import { Category } from "../scripts/cards";
+import { CategoryName } from "../scripts/cards";
 import { cards } from "../scripts/cardsInfo";
 import { openMenu } from "../scripts/pageFunc";
 const CATEGORIES_NAME_CARDS_SRC = [
@@ -36,6 +36,25 @@ const pageHeader = () => {
     header.appendChild(switchModeContainer);
     document.body.appendChild(header);
 };
+const createMenuNavItem = (category, navMenu, categoryClass) => {
+    const navMenuItem = document.createElement("li");
+    navMenuItem.setAttribute("class", categoryClass);
+    navMenuItem.setAttribute("id", `${category}_nav`);
+    navMenuItem.innerHTML = category;
+    navMenu.appendChild(navMenuItem);
+};
+const createMenu = () => {
+    const menu = document.createElement("div");
+    menu.setAttribute("class", "menu");
+    const navMenu = document.createElement("ul");
+    navMenu.setAttribute("class", "navMenu");
+    createMenuNavItem("Main Page", navMenu, "navMenuItem navMenuItemActive");
+    CATEGORIES_NAME_CARDS_SRC.forEach(category => {
+        createMenuNavItem(category, navMenu, "navMenuItem");
+    });
+    menu.appendChild(navMenu);
+    document.body.appendChild(menu);
+};
 const pageMain = () => {
     const main = document.createElement("main");
     main.setAttribute("class", "main");
@@ -44,7 +63,7 @@ const pageMain = () => {
     const mainPage = document.createElement("div");
     mainPage.setAttribute("class", "page mainPage block");
     CATEGORIES_NAME_CARDS_SRC.forEach((category) => {
-        const card = new Category(cards[category].mainImage, category);
+        const card = new CategoryName(cards[category].mainImage, category);
         const cardImg = card.render();
         mainPage.appendChild(cardImg);
         card.loadCategoryCards();
@@ -55,6 +74,7 @@ const pageMain = () => {
     main.appendChild(mainPage);
     main.appendChild(categoriesPage);
 };
+createMenu();
 pageHeader();
 pageMain();
 openMenu();
