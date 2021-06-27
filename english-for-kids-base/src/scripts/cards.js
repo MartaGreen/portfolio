@@ -21,7 +21,7 @@ function createCard(src, name) {
 function createAudio(src, classes) {
     const newAudio = document.createElement("audio");
     newAudio.src = src;
-    classes.forEach(cls => newAudio.classList.add(cls));
+    classes.forEach((cls) => newAudio.classList.add(cls));
     return newAudio;
 }
 class Card {
@@ -75,12 +75,13 @@ class CategoryCard extends Card {
             console.log("klick");
             const frontCard = cardContainer.querySelector(".frontCard");
             const backCard = cardContainer.querySelector(".backCard");
-            frontCard.classList.remove("frontCard");
-            backCard.classList.remove("backCard");
-            backCard.classList.add("frontCard");
-            frontCard.classList.add("backCard");
             frontCard.classList.add("flipBack");
             backCard.classList.add("flipFront");
+            cardContainer.addEventListener("mouseleave", () => {
+                console.log("mouse out");
+                frontCard.classList.remove("flipBack");
+                backCard.classList.remove("flipFront");
+            });
         });
     }
 }

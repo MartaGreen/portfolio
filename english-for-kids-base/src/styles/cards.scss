@@ -91,9 +91,9 @@ body {
       height: 200px;
 
       border-radius: 10px;
-      box-shadow: 0 2px 5px 2px #8a8787;
+      // box-shadow: 0 2px 5px 2px #8a8787;
 
-      transition: 0.5s;
+      transition: 0.7s;
 
       .canvContainer {
         position: absolute;
@@ -107,6 +107,7 @@ body {
         backface-visibility: hidden;
         border-radius: 10px;
         background-color: white;
+        box-shadow: 0 2px 5px 2px #b1acac;
 
         &.frontCard {
           z-index: 2;
@@ -142,15 +143,20 @@ body {
 
       .flipFront {
         transform: rotateY(360deg);
+        z-index: 2 !important;
       }
       .flipBack {
         transform: rotateY(180deg);
+        z-index: 1 !important;
       }
     }
 
     .cardContainer:hover {
-      box-shadow: 0 4px 8px 4px rgb(206, 204, 204);
       cursor: pointer;
+
+      .canvContainer {
+        box-shadow: 0 6px 10px 6px rgb(3, 63, 5);
+      }
     }
 
     &.page {

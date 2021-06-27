@@ -1,35 +1,35 @@
 import { cards } from "../scripts/cardsInfo";
 
 function createCard(src: string, name: string) {
-  const canvContainer:HTMLDivElement = document.createElement("div");
-    canvContainer.setAttribute("class", "canvContainer");
+  const canvContainer: HTMLDivElement = document.createElement("div");
+  canvContainer.setAttribute("class", "canvContainer");
 
-    const canvas: HTMLCanvasElement = document.createElement("canvas");
-    const ctx: CanvasRenderingContext2D = canvas.getContext("2d");
+  const canvas: HTMLCanvasElement = document.createElement("canvas");
+  const ctx: CanvasRenderingContext2D = canvas.getContext("2d");
 
-    const image = new Image();
-    image.src = src;
+  const image = new Image();
+  image.src = src;
 
-    image.onload = () => {
-      image.width = canvas.width;
-      image.height = canvas.height;
-      ctx.drawImage(image, 0, 0, image.width, image.height);
+  image.onload = () => {
+    image.width = canvas.width;
+    image.height = canvas.height;
+    ctx.drawImage(image, 0, 0, image.width, image.height);
 
-      canvContainer.appendChild(canvas);
-    };
+    canvContainer.appendChild(canvas);
+  };
 
-    const cardName: HTMLDivElement = document.createElement("div");
-    cardName.setAttribute("class", "cardName");
-    cardName.innerHTML = name;
-    
-    canvContainer.appendChild(cardName);
-    return canvContainer;
+  const cardName: HTMLDivElement = document.createElement("div");
+  cardName.setAttribute("class", "cardName");
+  cardName.innerHTML = name;
+
+  canvContainer.appendChild(cardName);
+  return canvContainer;
 }
 
 function createAudio(src: string, classes: string[]) {
   const newAudio: HTMLAudioElement = document.createElement("audio");
   newAudio.src = src;
-  classes.forEach(cls => newAudio.classList.add(cls));
+  classes.forEach((cls) => newAudio.classList.add(cls));
 
   return newAudio;
 }
@@ -60,7 +60,7 @@ class CategoryCard extends Card {
   name: string;
   translate: string;
   audioSrc: string;
-  sound: HTMLAudioElement
+  sound: HTMLAudioElement;
   constructor(src, name, translate, audioSrc) {
     super(src, name);
     this.translate = translate;
@@ -69,7 +69,10 @@ class CategoryCard extends Card {
 
   render() {
     super.render();
-    const backCanvContainer: HTMLDivElement = createCard(this.src, this.translate);
+    const backCanvContainer: HTMLDivElement = createCard(
+      this.src,
+      this.translate
+    );
     this.cardContainer.appendChild(backCanvContainer);
 
     this.sound = createAudio(this.audioSrc, ["sound"]);
@@ -94,24 +97,29 @@ class CategoryCard extends Card {
         console.log("play sound");
         this.sound.play();
       }
-    })
+    });
   }
 
   flip() {
-    const flipBtn: HTMLButtonElement = this.cardContainer.querySelector(".flipBtn");
+    const flipBtn: HTMLButtonElement =
+      this.cardContainer.querySelector(".flipBtn");
     const cardContainer: HTMLDivElement = this.cardContainer;
     flipBtn.addEventListener("click", function clickEvent() {
       console.log("klick");
-      const frontCard: HTMLButtonElement = cardContainer.querySelector(".frontCard");
-      const backCard: HTMLButtonElement = cardContainer.querySelector(".backCard");
+      const frontCard: HTMLButtonElement =
+        cardContainer.querySelector(".frontCard");
+      const backCard: HTMLButtonElement =
+        cardContainer.querySelector(".backCard");
 
-      frontCard.classList.remove("frontCard");
-      backCard.classList.remove("backCard");
-      backCard.classList.add("frontCard");
-      frontCard.classList.add("backCard");
       frontCard.classList.add("flipBack");
       backCard.classList.add("flipFront");
-    })
+
+      cardContainer.addEventListener("mouseleave", () => {
+        console.log("mouse out")
+        frontCard.classList.remove("flipBack");
+        backCard.classList.remove("flipFront");
+      });
+    });
   }
 }
 
