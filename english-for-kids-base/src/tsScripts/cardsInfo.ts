@@ -154,16 +154,16 @@ export const cards = {
         audioSrc: "./sounds/bananaSound.mp3",
       },
       {
-        word: "bread",
-        translation: "хлеб",
-        image: "./images/bread.jpg",
-        audioSrc: "./sounds/breadSound.mp3",
-      },
-      {
         word: "cherry",
         translation: "вишня",
         image: "./images/cherry.jpg",
         audioSrc: "./sounds/cherrySound.mp3",
+      },
+      {
+        word: "bread",
+        translation: "хлеб",
+        image: "./images/bread.jpg",
+        audioSrc: "./sounds/breadSound.mp3",
       },
       {
         word: "chocolate",
@@ -172,16 +172,16 @@ export const cards = {
         audioSrc: "./sounds/chocolateSound.mp3",
       },
       {
-        word: "pear",
-        translation: "груша",
-        image: "./images/pear.jpg",
-        audioSrc: "./sounds/pearSound.mp3",
-      },
-      {
         word: "strawberry",
         translation: "клубника",
         image: "./images/strawberry.jpg",
         audioSrc: "./sounds/strawberrySound.mp3",
+      },
+      {
+        word: "pear",
+        translation: "груша",
+        image: "./images/pear.jpg",
+        audioSrc: "./sounds/pearSound.mp3",
       },
       {
         word: "tomato",
