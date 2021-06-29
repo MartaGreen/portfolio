@@ -43,4 +43,13 @@ import "../assets/images/clothes/skirt.jpg";
 import "../assets/images/clothes/sweater.jpg";
 import "../assets/images/clothes/t-shirt.jpg";
 import "../assets/images/clothes/trousers.jpg";
+// colors images
+import "../assets/images/colors/black.jpg";
+import "../assets/images/colors/blue.jpg";
+import "../assets/images/colors/green.jpg";
+import "../assets/images/colors/orange.jpg";
+import "../assets/images/colors/pink.jpg";
+import "../assets/images/colors/purple.jpg";
+import "../assets/images/colors/red.jpg";
+import "../assets/images/colors/yellow.jpg";
 //# sourceMappingURL=cardsImagesImport.js.map

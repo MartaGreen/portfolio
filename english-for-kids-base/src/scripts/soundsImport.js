@@ -34,4 +34,13 @@ import "../assets/sounds/clothes/skirtSound.mp3";
 import "../assets/sounds/clothes/sweaterSound.mp3";
 import "../assets/sounds/clothes/t-shirtSound.mp3";
 import "../assets/sounds/clothes/trousersSound.mp3";
+// colors sounds
+import "../assets/sounds/colors/blackSound.mp3";
+import "../assets/sounds/colors/blueSound.mp3";
+import "../assets/sounds/colors/greenSound.mp3";
+import "../assets/sounds/colors/orangeSound.mp3";
+import "../assets/sounds/colors/pinkSound.mp3";
+import "../assets/sounds/colors/purpleSound.mp3";
+import "../assets/sounds/colors/redSound.mp3";
+import "../assets/sounds/colors/yellowSound.mp3";
 //# sourceMappingURL=soundsImport.js.map
