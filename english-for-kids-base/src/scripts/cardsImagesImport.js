@@ -25,4 +25,13 @@ import "../assets/images/actions/ride.jpg";
 import "../assets/images/actions/run.jpg";
 import "../assets/images/actions/sing.jpg";
 import "../assets/images/actions/swim.jpg";
+// food images
+import "../assets/images/food/apple.jpg";
+import "../assets/images/food/banana.jpg";
+import "../assets/images/food/bread.jpg";
+import "../assets/images/food/cherry.jpg";
+import "../assets/images/food/chocolate.jpg";
+import "../assets/images/food/pear.jpg";
+import "../assets/images/food/strawberry.jpg";
+import "../assets/images/food/tomato.jpg";
 //# sourceMappingURL=cardsImagesImport.js.map

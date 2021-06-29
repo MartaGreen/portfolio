@@ -16,4 +16,13 @@ import "../assets/sounds/actions/rideSound.mp3";
 import "../assets/sounds/actions/runSound.mp3";
 import "../assets/sounds/actions/singSound.mp3";
 import "../assets/sounds/actions/swimSound.mp3";
+// food sounds
+import "../assets/sounds/food/appleSound.mp3";
+import "../assets/sounds/food/bananaSound.mp3";
+import "../assets/sounds/food/breadSound.mp3";
+import "../assets/sounds/food/cherrySound.mp3";
+import "../assets/sounds/food/chocolateSound.mp3";
+import "../assets/sounds/food/pearSound.mp3";
+import "../assets/sounds/food/strawberrySound.mp3";
+import "../assets/sounds/food/tomatoSound.mp3";
 //# sourceMappingURL=soundsImport.js.map
