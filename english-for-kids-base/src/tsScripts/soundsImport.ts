@@ -7,3 +7,13 @@ import "../assets/sounds/animals/cowSound.mp3";
 import "../assets/sounds/animals/bearSound.mp3";
 import "../assets/sounds/animals/foxSound.mp3";
 import "../assets/sounds/animals/fishSound.mp3";
+
+// actions sounds
+import "../assets/sounds/actions/climbSound.mp3";
+import "../assets/sounds/actions/flySound.mp3";
+import "../assets/sounds/actions/hugSound.mp3";
+import "../assets/sounds/actions/jumpSound.mp3";
+import "../assets/sounds/actions/rideSound.mp3";
+import "../assets/sounds/actions/runSound.mp3";
+import "../assets/sounds/actions/singSound.mp3";
+import "../assets/sounds/actions/swimSound.mp3";

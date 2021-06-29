@@ -14,10 +14,52 @@ export const cards = {
     mainImage: "./images/actionsMain.jpg",
     data: [
       {
-        word: "",
-        translation: "",
-        image: "",
-        audioSrc: "",
+        word: "climb",
+        translation: "взбираться",
+        image: "./images/climb.jpg",
+        audioSrc: "./sounds/climbSound.mp3",
+      },
+      {
+        word: "fly",
+        translation: "летать",
+        image: "./images/fly.jpg",
+        audioSrc: "./sounds/flySound.mp3",
+      },
+      {
+        word: "hug",
+        translation: "обнимать",
+        image: "./images/hug.jpg",
+        audioSrc: "./sounds/hugSound.mp3",
+      },
+      {
+        word: "jump",
+        translation: "прыгать",
+        image: "./images/jump.jpg",
+        audioSrc: "./sounds/jumpSound.mp3",
+      },
+      {
+        word: "ride",
+        translation: "кататься",
+        image: "./images/ride.jpg",
+        audioSrc: "./sounds/rideSound.mp3",
+      },
+      {
+        word: "run",
+        translation: "бегать",
+        image: "./images/run.jpg",
+        audioSrc: "./sounds/runSound.mp3",
+      },
+      {
+        word: "sing",
+        translation: "петь",
+        image: "./images/sing.jpg",
+        audioSrc: "./sounds/singSound.mp3",
+      },
+      {
+        word: "swim",
+        translation: "плавать",
+        image: "./images/swim.jpg",
+        audioSrc: "./sounds/swimSound.mp3",
       },
     ],
   },
@@ -118,8 +160,8 @@ export const cards = {
       },
     ],
   },
-  transports: {
-    mainImage: "./images/transportsMain.jpg",
+  transport: {
+    mainImage: "./images/transportMain.jpg",
     data: [
       {
         word: "",

@@ -9,7 +9,7 @@ const CATEGORIES_NAME_CARDS_SRC = [
     "animals",
     "food",
     "colors",
-    "transports",
+    "transport",
 ];
 const pageHeader = () => {
     // header rendering
@@ -39,7 +39,7 @@ const pageHeader = () => {
 const createMenuNavItem = (category, navMenu, categoryClass) => {
     const navMenuItem = document.createElement("li");
     navMenuItem.setAttribute("class", categoryClass);
-    navMenuItem.setAttribute("id", `${category}_nav`);
+    navMenuItem.setAttribute("id", `${category.split(" ").join("_")}_nav`);
     navMenuItem.innerHTML = category;
     navMenu.appendChild(navMenuItem);
 };
