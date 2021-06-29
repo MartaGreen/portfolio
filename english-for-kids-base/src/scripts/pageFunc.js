@@ -1,3 +1,4 @@
+import { CATEGORY_CARDS } from "../scripts/pageRender";
 const openMainPage = () => {
     const mainPageNav = document.getElementById("Main_Page_nav");
     const mainPage = document.querySelector(".mainPage");
@@ -8,6 +9,17 @@ const openMainPage = () => {
         mainPageNav.classList.add("navMenuItemActive");
         mainPage.classList.add("page");
         categoriesPage.classList.remove("page");
+    });
+};
+const changeMode = () => {
+    const slider = document.querySelector(".switchModeInput");
+    slider.addEventListener("change", (e) => {
+        const modeInput = e.target;
+        console.log(modeInput.checked);
+        if (modeInput.checked) {
+            const loadedCategory = CATEGORY_CARDS.find(card => card.stage === "loaded");
+            console.log(loadedCategory);
+        }
     });
 };
 export const openMenu = () => {
@@ -26,6 +38,7 @@ export const openMenu = () => {
         }
     });
     openMainPage();
+    changeMode();
 };
 function hideMenu() {
     document.body.classList.remove("openedMenu");

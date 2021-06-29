@@ -13,6 +13,25 @@ const CATEGORIES_NAME_CARDS_SRC = [
   "transport",
 ];
 
+export const CATEGORY_CARDS = [];
+
+const renderSitchMode = () => {
+  const switchMode : HTMLLabelElement = document.createElement("label");
+  switchMode.setAttribute("class", "switchMode")
+
+  const switchModeInput: HTMLInputElement = document.createElement("input");
+  switchModeInput.setAttribute("class", "switchModeInput");
+  switchModeInput.setAttribute("type", "checkbox");
+
+  const switchModeSpan: HTMLSpanElement = document.createElement("span");
+  switchModeSpan.setAttribute("class", "switchModeSpan");
+
+  switchMode.appendChild(switchModeInput);
+  switchMode.appendChild(switchModeSpan);
+
+  return switchMode;
+}
+
 const pageHeader = () => {
   // header rendering
   const header: HTMLElement = document.createElement("header");
@@ -30,19 +49,8 @@ const pageHeader = () => {
 
   header.appendChild(burgerMenu);
 
-  const switchModeContainer : HTMLDivElement = document.createElement("div");
-  switchModeContainer.setAttribute("class", "switchModeContainer")
-
-  const switchModeInput: HTMLInputElement = document.createElement("input");
-  switchModeInput.setAttribute("class", "switchModeInput");
-  switchModeInput.setAttribute("type", "checkbox");
-
-  const switchModeLable: HTMLLabelElement = document.createElement("label");
-  switchModeLable.setAttribute("class", "switchModeLable");
-
-  switchModeContainer.appendChild(switchModeInput);
-  switchModeContainer.appendChild(switchModeLable);
-  header.appendChild(switchModeContainer);
+  const switchMode : HTMLLabelElement = renderSitchMode();
+  header.appendChild(switchMode);
 
   document.body.appendChild(header);
 }
@@ -84,6 +92,7 @@ const pageMain = () => {
   CATEGORIES_NAME_CARDS_SRC.forEach((category) => {
     const card: CategoryName = new CategoryName(cards[category].mainImage, category);
     const cardImg: HTMLCanvasElement = card.render();
+    CATEGORY_CARDS.push(card);
 
     mainPage.appendChild(cardImg);
     card.loadCategoryCards();

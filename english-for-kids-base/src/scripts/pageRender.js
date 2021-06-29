@@ -11,6 +11,19 @@ const CATEGORIES_NAME_CARDS_SRC = [
     "colors",
     "transport",
 ];
+export const CATEGORY_CARDS = [];
+const renderSitchMode = () => {
+    const switchMode = document.createElement("label");
+    switchMode.setAttribute("class", "switchMode");
+    const switchModeInput = document.createElement("input");
+    switchModeInput.setAttribute("class", "switchModeInput");
+    switchModeInput.setAttribute("type", "checkbox");
+    const switchModeSpan = document.createElement("span");
+    switchModeSpan.setAttribute("class", "switchModeSpan");
+    switchMode.appendChild(switchModeInput);
+    switchMode.appendChild(switchModeSpan);
+    return switchMode;
+};
 const pageHeader = () => {
     // header rendering
     const header = document.createElement("header");
@@ -24,16 +37,8 @@ const pageHeader = () => {
         burgerMenu.appendChild(burgerMenuItem);
     }
     header.appendChild(burgerMenu);
-    const switchModeContainer = document.createElement("div");
-    switchModeContainer.setAttribute("class", "switchModeContainer");
-    const switchModeInput = document.createElement("input");
-    switchModeInput.setAttribute("class", "switchModeInput");
-    switchModeInput.setAttribute("type", "checkbox");
-    const switchModeLable = document.createElement("label");
-    switchModeLable.setAttribute("class", "switchModeLable");
-    switchModeContainer.appendChild(switchModeInput);
-    switchModeContainer.appendChild(switchModeLable);
-    header.appendChild(switchModeContainer);
+    const switchMode = renderSitchMode();
+    header.appendChild(switchMode);
     document.body.appendChild(header);
 };
 const createMenuNavItem = (category, navMenu, categoryClass) => {
@@ -65,6 +70,7 @@ const pageMain = () => {
     CATEGORIES_NAME_CARDS_SRC.forEach((category) => {
         const card = new CategoryName(cards[category].mainImage, category);
         const cardImg = card.render();
+        CATEGORY_CARDS.push(card);
         mainPage.appendChild(cardImg);
         card.loadCategoryCards();
     });

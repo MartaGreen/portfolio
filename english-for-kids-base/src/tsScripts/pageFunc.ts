@@ -1,3 +1,5 @@
+import { CATEGORY_CARDS } from "../scripts/pageRender";
+
 const openMainPage = () => {
   const mainPageNav: HTMLElement = document.getElementById("Main_Page_nav");
   const mainPage: HTMLDivElement = document.querySelector(".mainPage");
@@ -14,6 +16,18 @@ const openMainPage = () => {
     categoriesPage.classList.remove("page");
   });
 };
+
+const changeMode = () => {
+  const slider: HTMLLabelElement = document.querySelector(".switchModeInput");
+  slider.addEventListener("change", (e) => {
+    const modeInput: HTMLInputElement = <HTMLInputElement>e.target;
+    console.log(modeInput.checked);
+    if (modeInput.checked) {
+      const loadedCategory = CATEGORY_CARDS.find(card => card.stage === "loaded");
+      console.log(loadedCategory);
+    }
+  })
+}
 
 export const openMenu = () => {
   const menuBtn = document.querySelector(".burgerMenu");
@@ -32,6 +46,7 @@ export const openMenu = () => {
   });
 
   openMainPage();
+  changeMode();
 };
 
 function hideMenu() {

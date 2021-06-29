@@ -100,6 +100,10 @@ class CategoryCard extends Card {
     }
 }
 export class CategoryName extends Card {
+    constructor(src, name) {
+        super(src, name);
+        this.stage = "static";
+    }
     loadCategoryCards() {
         const navPage = document.getElementById(`${this.name}_nav`);
         const addEventItems = [
@@ -108,6 +112,7 @@ export class CategoryName extends Card {
         ];
         addEventItems.forEach((item) => {
             item.addEventListener("click", () => {
+                this.stage = "loaded";
                 const activeNavPage = document.querySelector(".navMenuItemActive");
                 activeNavPage.classList.remove("navMenuItemActive");
                 navPage.classList.add("navMenuItemActive");
