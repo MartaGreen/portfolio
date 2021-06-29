@@ -25,4 +25,13 @@ import "../assets/sounds/food/chocolateSound.mp3";
 import "../assets/sounds/food/pearSound.mp3";
 import "../assets/sounds/food/strawberrySound.mp3";
 import "../assets/sounds/food/tomatoSound.mp3";
+// clothes sounds
+import "../assets/sounds/clothes/capSound.mp3";
+import "../assets/sounds/clothes/dressSound.mp3";
+import "../assets/sounds/clothes/shirtSound.mp3";
+import "../assets/sounds/clothes/shortsSound.mp3";
+import "../assets/sounds/clothes/skirtSound.mp3";
+import "../assets/sounds/clothes/sweaterSound.mp3";
+import "../assets/sounds/clothes/t-shirtSound.mp3";
+import "../assets/sounds/clothes/trousersSound.mp3";
 //# sourceMappingURL=soundsImport.js.map

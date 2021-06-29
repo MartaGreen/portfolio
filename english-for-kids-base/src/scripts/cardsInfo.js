@@ -63,7 +63,7 @@ export const cards = {
             },
         ],
     },
-    illnesses: {
+    deseases: {
         mainImage: "./images/illnessesMain.jpg",
         data: [
             {
@@ -78,10 +78,52 @@ export const cards = {
         mainImage: "./images/clothesMain.jpg",
         data: [
             {
-                word: "",
-                translation: "",
-                image: "",
-                audioSrc: "",
+                word: "cap",
+                translation: "кепка",
+                image: "./images/cap.jpg",
+                audioSrc: "./sounds/capSound.mp3",
+            },
+            {
+                word: "dress",
+                translation: "платье",
+                image: "./images/dress.jpg",
+                audioSrc: "./sounds/dressSound.mp3",
+            },
+            {
+                word: "shirt",
+                translation: "футболка",
+                image: "./images/shirt.jpg",
+                audioSrc: "./sounds/shirtSound.mp3",
+            },
+            {
+                word: "shorts",
+                translation: "шорты",
+                image: "./images/shorts.jpg",
+                audioSrc: "./sounds/shortsSound.mp3",
+            },
+            {
+                word: "skirt",
+                translation: "юбка",
+                image: "./images/skirt.jpg",
+                audioSrc: "./sounds/skirtSound.mp3",
+            },
+            {
+                word: "sweater",
+                translation: "свитер",
+                image: "./images/sweater.jpg",
+                audioSrc: "./sounds/sweaterSound.mp3",
+            },
+            {
+                word: "t-shirt",
+                translation: "рубашка",
+                image: "./images/t-shirt.jpg",
+                audioSrc: "./sounds/t-shirtSound.mp3",
+            },
+            {
+                word: "trousers",
+                translation: "брюки",
+                image: "./images/trousers.jpg",
+                audioSrc: "./sounds/trousersSound.mp3",
             },
         ],
     },

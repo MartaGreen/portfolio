@@ -4,7 +4,7 @@ import { openMenu } from "../scripts/pageFunc";
 const CATEGORIES_NAME_CARDS_SRC = [
     "emotions",
     "actions",
-    "illnesses",
+    "deseases",
     "clothes",
     "animals",
     "food",

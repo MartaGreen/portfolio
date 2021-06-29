@@ -5,7 +5,7 @@ import "../assets/images/mainImages/clothesMain.jpg";
 import "../assets/images/mainImages/colorsMain.jpg";
 import "../assets/images/mainImages/emotionsMain.jpg";
 import "../assets/images/mainImages/foodMain.jpg";
-import "../assets/images/mainImages/illnessesMain.jpg";
+import "../assets/images/mainImages/deseases.jpg";
 import "../assets/images/mainImages/transportMain.jpg";
 
 // animals images 
@@ -37,3 +37,13 @@ import "../assets/images/food/chocolate.jpg";
 import "../assets/images/food/pear.jpg";
 import "../assets/images/food/strawberry.jpg";
 import "../assets/images/food/tomato.jpg";
+
+// clothes images
+import "../assets/images/clothes/cap.jpg";
+import "../assets/images/clothes/dress.jpg";
+import "../assets/images/clothes/shirt.jpg";
+import "../assets/images/clothes/shorts.jpg";
+import "../assets/images/clothes/skirt.jpg";
+import "../assets/images/clothes/sweater.jpg";
+import "../assets/images/clothes/t-shirt.jpg";
+import "../assets/images/clothes/trousers.jpg";
