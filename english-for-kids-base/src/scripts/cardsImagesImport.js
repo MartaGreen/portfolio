@@ -52,4 +52,13 @@ import "../assets/images/colors/pink.jpg";
 import "../assets/images/colors/purple.jpg";
 import "../assets/images/colors/red.jpg";
 import "../assets/images/colors/yellow.jpg";
+// transport image
+import "../assets/images/transport/airplane.jpg";
+import "../assets/images/transport/bus.jpg";
+import "../assets/images/transport/car.jpg";
+import "../assets/images/transport/helicopter.jpg";
+import "../assets/images/transport/motorcycle.jpg";
+import "../assets/images/transport/ship.jpg";
+import "../assets/images/transport/taxi.jpg";
+import "../assets/images/transport/train.jpg";
 //# sourceMappingURL=cardsImagesImport.js.map

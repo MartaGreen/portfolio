@@ -64,7 +64,7 @@ export const cards = {
     ],
   },
   deseases: {
-    mainImage: "./images/illnessesMain.jpg",
+    mainImage: "./images/deseases.jpg",
     data: [
       {
         word: "",
@@ -290,10 +290,52 @@ export const cards = {
     mainImage: "./images/transportMain.jpg",
     data: [
       {
-        word: "",
-        translation: "",
-        image: "",
-        audioSrc: "",
+        word: "airplane",
+        translation: "самолет",
+        image: "./images/airplane.jpg",
+        audioSrc: "./sounds/airplaneSound.mp3",
+      },
+      {
+        word: "bus",
+        translation: "автобус",
+        image: "./images/bus.jpg",
+        audioSrc: "./sounds/busSound.mp3",
+      },
+      {
+        word: "car",
+        translation: "машина",
+        image: "./images/car.jpg",
+        audioSrc: "./sounds/carSound.mp3",
+      },
+      {
+        word: "helicopter",
+        translation: "вертолет",
+        image: "./images/helicopter.jpg",
+        audioSrc: "./sounds/helicopterSound.mp3",
+      },
+      {
+        word: "motorcycle",
+        translation: "мотоцикл",
+        image: "./images/motorcycle.jpg",
+        audioSrc: "./sounds/motorcycleSound.mp3",
+      },
+      {
+        word: "ship",
+        translation: "корабль",
+        image: "./images/ship.jpg",
+        audioSrc: "./sounds/shipSound.mp3",
+      },
+      {
+        word: "taxi",
+        translation: "такси",
+        image: "./images/taxi.jpg",
+        audioSrc: "./sounds/taxiSound.mp3",
+      },
+      {
+        word: "train",
+        translation: "поезд",
+        image: "./images/train.jpg",
+        audioSrc: "./sounds/trainSound.mp3",
       },
     ],
   },

@@ -43,4 +43,13 @@ import "../assets/sounds/colors/pinkSound.mp3";
 import "../assets/sounds/colors/purpleSound.mp3";
 import "../assets/sounds/colors/redSound.mp3";
 import "../assets/sounds/colors/yellowSound.mp3";
+// transport sounds
+import "../assets/sounds/transport/airplaneSound.mp3";
+import "../assets/sounds/transport/busSound.mp3";
+import "../assets/sounds/transport/carSound.mp3";
+import "../assets/sounds/transport/helicopterSound.mp3";
+import "../assets/sounds/transport/motorcycleSound.mp3";
+import "../assets/sounds/transport/shipSound.mp3";
+import "../assets/sounds/transport/taxiSound.mp3";
+import "../assets/sounds/transport/trainSound.mp3";
 //# sourceMappingURL=soundsImport.js.map
