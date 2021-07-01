@@ -58,7 +58,7 @@ import "../assets/images/colors/purple.jpg";
 import "../assets/images/colors/red.jpg";
 import "../assets/images/colors/yellow.jpg";
 
-// transport image
+// transport images
 import "../assets/images/transport/airplane.jpg";
 import "../assets/images/transport/bus.jpg";
 import "../assets/images/transport/car.jpg";
@@ -67,3 +67,13 @@ import "../assets/images/transport/motorcycle.jpg";
 import "../assets/images/transport/ship.jpg";
 import "../assets/images/transport/taxi.jpg";
 import "../assets/images/transport/train.jpg";
+
+// diseases images
+import "../assets/images/diseases/cold.jpg";
+import "../assets/images/diseases/cough.jpg";
+import "../assets/images/diseases/headache.jpg";
+import "../assets/images/diseases/itchy.jpg";
+import "../assets/images/diseases/sneeze.jpg";
+import "../assets/images/diseases/sore_throat.jpg";
+import "../assets/images/diseases/stomachache.jpg";
+import "../assets/images/diseases/toothache.jpg";

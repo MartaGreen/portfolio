@@ -63,14 +63,56 @@ export const cards = {
             },
         ],
     },
-    deseases: {
+    diseases: {
         mainImage: "./images/deseases.jpg",
         data: [
             {
-                word: "",
-                translation: "",
-                image: "",
-                audioSrc: "",
+                word: "cold",
+                translation: "простуда",
+                image: "./images/cold.jpg",
+                audioSrc: "./sounds/coldSound.mp3",
+            },
+            {
+                word: "cough",
+                translation: "кашель",
+                image: "./images/cough.jpg",
+                audioSrc: "./sounds/coughSound.mp3",
+            },
+            {
+                word: "headache",
+                translation: "головная боль",
+                image: "./images/headache.jpg",
+                audioSrc: "./sounds/headacheSound.mp3",
+            },
+            {
+                word: "itchy",
+                translation: "зуд",
+                image: "./images/itchy.jpg",
+                audioSrc: "./sounds/itchySound.mp3",
+            },
+            {
+                word: "sneeze",
+                translation: "насморк",
+                image: "./images/sneeze.jpg",
+                audioSrc: "./sounds/sneezeSound.mp3",
+            },
+            {
+                word: "sore throat",
+                translation: "боль в горле",
+                image: "./images/sore_throat.jpg",
+                audioSrc: "./sounds/sore_throatSound.mp3",
+            },
+            {
+                word: "stomachache",
+                translation: "боль в животе",
+                image: "./images/stomachache.jpg",
+                audioSrc: "./sounds/stomachacheSound.mp3",
+            },
+            {
+                word: "toothache",
+                translation: "зубная боль",
+                image: "./images/toothache.jpg",
+                audioSrc: "./sounds/toothacheSound.mp3",
             },
         ],
     },

@@ -52,4 +52,13 @@ import "../assets/sounds/transport/motorcycleSound.mp3";
 import "../assets/sounds/transport/shipSound.mp3";
 import "../assets/sounds/transport/taxiSound.mp3";
 import "../assets/sounds/transport/trainSound.mp3";
+// diseases sound
+import "../assets/sounds/diseases/coughSound.mp3";
+import "../assets/sounds/diseases/coldSound.mp3";
+import "../assets/sounds/diseases/headacheSound.mp3";
+import "../assets/sounds/diseases/itchySound.mp3";
+import "../assets/sounds/diseases/sneezeSound.mp3";
+import "../assets/sounds/diseases/sore_throatSound.mp3";
+import "../assets/sounds/diseases/stomachacheSound.mp3";
+import "../assets/sounds/diseases/toothacheSound.mp3";
 //# sourceMappingURL=soundsImport.js.map
