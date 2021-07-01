@@ -1,4 +1,4 @@
-import { cards } from "../scripts/cardsInfo";
+import { CATEGORY_CARDS } from "../scripts/pageRender";
 function createCard(src, name) {
     const canvContainer = document.createElement("div");
     canvContainer.setAttribute("class", "canvContainer");
@@ -57,7 +57,7 @@ class Card {
         return this.cardContainer;
     }
 }
-class CategoryCard extends Card {
+export class CategoryCard extends Card {
     constructor(src, name, translate, audioSrc) {
         super(src, name);
         this.translate = translate;
@@ -119,12 +119,11 @@ export class CategoryName extends Card {
                 const mainPage = document.querySelector(".mainPage");
                 const categoriesPage = document.querySelector(".categoriesPage");
                 categoriesPage.innerHTML = "";
-                const categoryCardsInfo = cards[this.name].data;
-                categoryCardsInfo.forEach((categoryCardInfo) => {
-                    const createCard = new CategoryCard(categoryCardInfo.image, categoryCardInfo.word, categoryCardInfo.translation, categoryCardInfo.audioSrc);
-                    const card = createCard.render();
-                    createCard.flip();
-                    createCard.playSound();
+                const categoryCards = CATEGORY_CARDS[this.name];
+                categoryCards.forEach((categoryCard) => {
+                    const card = categoryCard.render();
+                    categoryCard.flip();
+                    categoryCard.playSound();
                     categoriesPage.appendChild(card);
                 });
                 mainPage.classList.remove("page");

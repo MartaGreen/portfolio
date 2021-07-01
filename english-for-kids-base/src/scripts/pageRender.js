@@ -1,4 +1,4 @@
-import { CategoryName } from "../scripts/cards";
+import { CategoryName, CategoryCard } from "../scripts/cards";
 import { cards } from "../scripts/cardsInfo";
 import { openMenu } from "../scripts/pageFunc";
 const CATEGORIES_NAME_CARDS_SRC = [
@@ -11,7 +11,8 @@ const CATEGORIES_NAME_CARDS_SRC = [
     "colors",
     "transport",
 ];
-export const CATEGORY_CARDS = [];
+export const CATEGORIES_NAMES = [];
+export const CATEGORY_CARDS = {};
 const renderSitchMode = () => {
     const switchMode = document.createElement("label");
     switchMode.setAttribute("class", "switchMode");
@@ -54,7 +55,7 @@ const createMenu = () => {
     const navMenu = document.createElement("ul");
     navMenu.setAttribute("class", "navMenu");
     createMenuNavItem("Main Page", navMenu, "navMenuItem navMenuItemActive");
-    CATEGORIES_NAME_CARDS_SRC.forEach(category => {
+    CATEGORIES_NAME_CARDS_SRC.forEach((category) => {
         createMenuNavItem(category, navMenu, "navMenuItem");
     });
     menu.appendChild(navMenu);
@@ -70,7 +71,13 @@ const pageMain = () => {
     CATEGORIES_NAME_CARDS_SRC.forEach((category) => {
         const card = new CategoryName(cards[category].mainImage, category);
         const cardImg = card.render();
-        CATEGORY_CARDS.push(card);
+        CATEGORIES_NAMES.push(card);
+        CATEGORY_CARDS[category] = [];
+        const categoryCardsInfo = cards[category].data;
+        categoryCardsInfo.forEach((categoryCardInfo) => {
+            const createCard = new CategoryCard(categoryCardInfo.image, categoryCardInfo.word, categoryCardInfo.translation, categoryCardInfo.audioSrc);
+            CATEGORY_CARDS[category].push(createCard);
+        });
         mainPage.appendChild(cardImg);
         card.loadCategoryCards();
     });

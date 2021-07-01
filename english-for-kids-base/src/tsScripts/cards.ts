@@ -1,4 +1,5 @@
 import { cards } from "../scripts/cardsInfo";
+import { CATEGORY_CARDS } from "../scripts/pageRender";
 
 function createCard(src: string, name: string) {
   const canvContainer: HTMLDivElement = document.createElement("div");
@@ -75,7 +76,7 @@ class Card {
   }
 }
 
-class CategoryCard extends Card {
+export class CategoryCard extends Card {
   src: string;
   name: string;
   translate: string;
@@ -147,6 +148,7 @@ export class CategoryName extends Card {
     super(src, name);
     this.stage = "static";
   }
+
   loadCategoryCards() {
     const navPage: HTMLElement = document.getElementById(`${this.name}_nav`);
     const addEventItems = [
@@ -166,17 +168,11 @@ export class CategoryName extends Card {
           document.querySelector(".categoriesPage");
 
         categoriesPage.innerHTML = "";
-        const categoryCardsInfo = cards[this.name].data;
-        categoryCardsInfo.forEach((categoryCardInfo) => {
-          const createCard = new CategoryCard(
-            categoryCardInfo.image,
-            categoryCardInfo.word,
-            categoryCardInfo.translation,
-            categoryCardInfo.audioSrc
-          );
-          const card = createCard.render();
-          createCard.flip();
-          createCard.playSound();
+        const categoryCards = CATEGORY_CARDS[this.name];
+        categoryCards.forEach((categoryCard) => {
+          const card = categoryCard.render();
+          categoryCard.flip();
+          categoryCard.playSound();
 
           categoriesPage.appendChild(card);
         });

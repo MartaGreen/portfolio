@@ -1,4 +1,4 @@
-import { CATEGORY_CARDS } from "../scripts/pageRender";
+import { CATEGORIES_NAMES } from "../scripts/pageRender";
 
 const openMainPage = () => {
   const mainPageNav: HTMLElement = document.getElementById("Main_Page_nav");
@@ -23,7 +23,7 @@ const changeMode = () => {
     const modeInput: HTMLInputElement = <HTMLInputElement>e.target;
     console.log(modeInput.checked);
     if (modeInput.checked) {
-      const loadedCategory = CATEGORY_CARDS.find(card => card.stage === "loaded");
+      const loadedCategory = CATEGORIES_NAMES.find(card => card.stage === "loaded");
       console.log(loadedCategory);
     }
   })
