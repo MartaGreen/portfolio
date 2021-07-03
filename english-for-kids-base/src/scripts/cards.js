@@ -1,5 +1,5 @@
 import { CATEGORY_CARDS } from "../scripts/pageRender";
-function createCard(src, name) {
+function createCard(src) {
     const canvContainer = document.createElement("div");
     canvContainer.setAttribute("class", "canvContainer");
     const canvas = document.createElement("canvas");
@@ -12,11 +12,13 @@ function createCard(src, name) {
         ctx.drawImage(image, 0, 0, image.width, image.height);
         canvContainer.appendChild(canvas);
     };
+    return canvContainer;
+}
+function createCardName(canvContainer, name) {
     const cardName = document.createElement("div");
     cardName.setAttribute("class", "cardName");
     cardName.innerHTML = name;
     canvContainer.appendChild(cardName);
-    return canvContainer;
 }
 function createAudio(src, classes) {
     const newAudio = document.createElement("audio");
@@ -45,14 +47,14 @@ function createFlipBtn() {
 }
 class Card {
     constructor(src, name) {
-        this.stage = "";
         this.src = src;
-        this.cardContainer = document.createElement("div");
-        this.cardContainer.setAttribute("class", "cardContainer");
         this.name = name;
     }
     render() {
-        const canvContainer = createCard(this.src, this.name);
+        console.log("null card cont");
+        this.cardContainer = document.createElement("div");
+        this.cardContainer.setAttribute("class", "cardContainer");
+        const canvContainer = createCard(this.src);
         this.cardContainer.appendChild(canvContainer);
         return this.cardContainer;
     }
@@ -63,23 +65,34 @@ export class CategoryCard extends Card {
         this.translate = translate;
         this.audioSrc = audioSrc;
     }
-    render() {
+    renderPlay() {
         super.render();
-        const backCanvContainer = createCard(this.src, this.translate);
+        console.log(this.stage);
+        const backCanvContainer = createCard(this.src);
         this.cardContainer.appendChild(backCanvContainer);
-        this.sound = createAudio(this.audioSrc, ["sound"]);
-        this.cardContainer.appendChild(this.sound);
         const canvConts = this.cardContainer.querySelectorAll(".canvContainer");
         canvConts[0].classList.add("frontCard");
         canvConts[1].classList.add("backCard");
+        this.sound = createAudio(this.audioSrc, ["sound"]);
+        this.cardContainer.appendChild(this.sound);
+        return this.cardContainer;
+    }
+    renderTrain() {
+        this.renderPlay();
+        const canvConts = this.cardContainer.querySelectorAll(".canvContainer");
+        createCardName(canvConts[0], this.name);
+        createCardName(canvConts[1], this.translate);
         const flipBtn = createFlipBtn();
         canvConts[0].appendChild(flipBtn);
+        this.flip();
+        this.playSound();
         return this.cardContainer;
     }
     playSound() {
         this.cardContainer.addEventListener("click", (event) => {
             const flipBtn = this.cardContainer.querySelector(".flipBtnImg");
-            if (event.target !== flipBtn) {
+            if (event.target !== flipBtn &&
+                !flipBtn.contains(event.target)) {
                 this.sound.play();
             }
         });
@@ -102,17 +115,19 @@ export class CategoryCard extends Card {
 export class CategoryName extends Card {
     constructor(src, name) {
         super(src, name);
-        this.stage = "static";
+        this.stage = "train";
+    }
+    render() {
+        super.render();
+        const canvContainer = this.cardContainer.querySelector(".canvContainer");
+        createCardName(canvContainer, this.name);
+        return this.cardContainer;
     }
     loadCategoryCards() {
         const navPage = document.getElementById(`${this.name}_nav`);
-        const addEventItems = [
-            this.cardContainer,
-            navPage
-        ];
+        const addEventItems = [this.cardContainer, navPage];
         addEventItems.forEach((item) => {
             item.addEventListener("click", () => {
-                this.stage = "loaded";
                 const activeNavPage = document.querySelector(".navMenuItemActive");
                 activeNavPage.classList.remove("navMenuItemActive");
                 navPage.classList.add("navMenuItemActive");
@@ -121,9 +136,12 @@ export class CategoryName extends Card {
                 categoriesPage.innerHTML = "";
                 const categoryCards = CATEGORY_CARDS[this.name];
                 categoryCards.forEach((categoryCard) => {
-                    const card = categoryCard.render();
-                    categoryCard.flip();
-                    categoryCard.playSound();
+                    categoryCard.stage = this.stage;
+                    const card = this.stage === "train"
+                        ? categoryCard.renderTrain()
+                        : categoryCard.renderPlay();
+                    // categoryCard.flip();
+                    // categoryCard.playSound();
                     categoriesPage.appendChild(card);
                 });
                 mainPage.classList.remove("page");

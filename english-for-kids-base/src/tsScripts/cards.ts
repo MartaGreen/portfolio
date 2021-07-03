@@ -1,7 +1,7 @@
 import { cards } from "../scripts/cardsInfo";
 import { CATEGORY_CARDS } from "../scripts/pageRender";
 
-function createCard(src: string, name: string) {
+function createCard(src: string) {
   const canvContainer: HTMLDivElement = document.createElement("div");
   canvContainer.setAttribute("class", "canvContainer");
 
@@ -19,12 +19,15 @@ function createCard(src: string, name: string) {
     canvContainer.appendChild(canvas);
   };
 
+  return canvContainer;
+}
+
+function createCardName(canvContainer: HTMLDivElement, name: string) {
   const cardName: HTMLDivElement = document.createElement("div");
   cardName.setAttribute("class", "cardName");
   cardName.innerHTML = name;
 
   canvContainer.appendChild(cardName);
-  return canvContainer;
 }
 
 function createAudio(src: string, classes: string[]) {
@@ -56,20 +59,20 @@ function createFlipBtn() {
 }
 
 class Card {
-  stage: string;
   src: string;
   cardContainer: HTMLDivElement;
   name: string;
   constructor(src, name) {
-    this.stage = "";
     this.src = src;
-    this.cardContainer = document.createElement("div");
-    this.cardContainer.setAttribute("class", "cardContainer");
     this.name = name;
   }
 
   render() {
-    const canvContainer: HTMLDivElement = createCard(this.src, this.name);
+    console.log("null card cont");
+    this.cardContainer = document.createElement("div");
+    this.cardContainer.setAttribute("class", "cardContainer");
+
+    const canvContainer: HTMLDivElement = createCard(this.src);
     this.cardContainer.appendChild(canvContainer);
 
     return this.cardContainer;
@@ -77,6 +80,7 @@ class Card {
 }
 
 export class CategoryCard extends Card {
+  stage: string;
   src: string;
   name: string;
   translate: string;
@@ -88,23 +92,36 @@ export class CategoryCard extends Card {
     this.audioSrc = audioSrc;
   }
 
-  render() {
+  renderPlay() {
     super.render();
-    const backCanvContainer: HTMLDivElement = createCard(
-      this.src,
-      this.translate
-    );
-    this.cardContainer.appendChild(backCanvContainer);
 
-    this.sound = createAudio(this.audioSrc, ["sound"]);
-    this.cardContainer.appendChild(this.sound);
+    console.log(this.stage);
+    const backCanvContainer: HTMLDivElement = createCard(this.src);
+    this.cardContainer.appendChild(backCanvContainer);
 
     const canvConts = this.cardContainer.querySelectorAll(".canvContainer");
     canvConts[0].classList.add("frontCard");
     canvConts[1].classList.add("backCard");
 
+    this.sound = createAudio(this.audioSrc, ["sound"]);
+    this.cardContainer.appendChild(this.sound);
+
+    return this.cardContainer;
+  }
+
+  renderTrain() {
+    this.renderPlay();
+
+    const canvConts = this.cardContainer.querySelectorAll(".canvContainer");
+
+    createCardName(<HTMLDivElement>canvConts[0], this.name);
+    createCardName(<HTMLDivElement>canvConts[1], this.translate);
+
     const flipBtn = createFlipBtn();
     canvConts[0].appendChild(flipBtn);
+
+    this.flip();
+    this.playSound();
 
     return this.cardContainer;
   }
@@ -113,7 +130,10 @@ export class CategoryCard extends Card {
     this.cardContainer.addEventListener("click", (event) => {
       const flipBtn: HTMLElement =
         this.cardContainer.querySelector(".flipBtnImg");
-      if (event.target !== flipBtn) {
+      if (
+        event.target !== flipBtn &&
+        !flipBtn.contains(<HTMLElement>event.target)
+      ) {
         this.sound.play();
       }
     });
@@ -141,25 +161,29 @@ export class CategoryCard extends Card {
 }
 
 export class CategoryName extends Card {
+  stage: string;
   src: string;
   name: string;
-  stage: string;
   constructor(src, name) {
     super(src, name);
-    this.stage = "static";
+    this.stage = "train";
+  }
+
+  render() {
+    super.render();
+    const canvContainer:HTMLDivElement = this.cardContainer.querySelector(".canvContainer");
+    createCardName(canvContainer, this.name);
+
+    return this.cardContainer;
   }
 
   loadCategoryCards() {
     const navPage: HTMLElement = document.getElementById(`${this.name}_nav`);
-    const addEventItems = [
-      this.cardContainer,
-      navPage
-    ];
+    const addEventItems = [this.cardContainer, navPage];
     addEventItems.forEach((item) => {
       item.addEventListener("click", () => {
-        this.stage = "loaded";
-        
-        const activeNavPage: HTMLElement = document.querySelector(".navMenuItemActive");
+        const activeNavPage: HTMLElement =
+          document.querySelector(".navMenuItemActive");
         activeNavPage.classList.remove("navMenuItemActive");
         navPage.classList.add("navMenuItemActive");
 
@@ -168,11 +192,16 @@ export class CategoryName extends Card {
           document.querySelector(".categoriesPage");
 
         categoriesPage.innerHTML = "";
+
         const categoryCards = CATEGORY_CARDS[this.name];
         categoryCards.forEach((categoryCard) => {
-          const card = categoryCard.render();
-          categoryCard.flip();
-          categoryCard.playSound();
+          categoryCard.stage = this.stage;
+          const card =
+            this.stage === "train"
+              ? categoryCard.renderTrain()
+              : categoryCard.renderPlay();
+          // categoryCard.flip();
+          // categoryCard.playSound();
 
           categoriesPage.appendChild(card);
         });

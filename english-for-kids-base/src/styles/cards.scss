@@ -3,6 +3,22 @@ body {
   margin: 0 auto;
   background: linear-gradient(to bottom, #0e0e0e, #14b136);
 
+  &.playMode {
+    background: linear-gradient(to bottom, rgb(77, 1, 1), orange);
+
+    .main {
+      .cardContainer:hover {
+        .canvContainer {
+          box-shadow: 0 7px 12px 7px rgb(77, 1, 1);
+        }
+      }
+    }
+
+    .menu {
+      background: linear-gradient(to bottom, orange, rgb(77, 1, 1));
+    }
+  }
+
   &.openedMenu {
     .burgerMenuItem {
       position: absolute;
