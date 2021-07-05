@@ -37,20 +37,9 @@ function createWrongAttempt() {
 }
 
 function game(arr, i: number) {
-  const chosenCard = arr[i];
-  setTimeout(() => chosenCard.sound.play(), 400);
-
-  const attempts: HTMLDivElement = document.querySelector(".attempts");
-
-  const slider: HTMLInputElement = document.querySelector(".switchModeInput");
-  slider.addEventListener("change", function stopGame() {
-    slider.removeEventListener("change", stopGame);
-    i = arr.length;
-    console.log("delete");
-  });
-
-  const cardsField: HTMLDivElement = document.querySelector(".categoriesPage");
-  cardsField.addEventListener("click", function handleClick(clickedObj) {
+  // checking user answer
+  function handleClick(clickedObj) {
+    console.log(i);
 
     console.log("target", clickedObj.target);
     if (
@@ -62,7 +51,6 @@ function game(arr, i: number) {
 
       if (i < arr.length - 1) {
         cardsField.removeEventListener("click", handleClick);
-        console.log(true, i, "length: ", arr.length);
         i += 1;
         game(arr, i);
       } else {
@@ -80,6 +68,37 @@ function game(arr, i: number) {
 
       console.log(false);
     }
+  }
+
+  function stopGame() {
+    slider.removeEventListener("change", stopGame);
+    i = arr.length;
+
+    cardsField.removeEventListener("click", handleClick);
+    
+    const categoriesPageCont: HTMLDivElement = document.querySelector(".categoriesPageCont");
+    const playBtn: HTMLInputElement = createPlayBtn();
+    categoriesPageCont.appendChild(playBtn);
+
+    console.log("delete");
+  }
+
+  const chosenCard = arr[i];
+  console.log("chosenCard", chosenCard);
+  setTimeout(() => chosenCard.sound.play(), 500);
+
+  const attempts: HTMLDivElement = document.querySelector(".attempts");
+
+  const cardsField: HTMLDivElement = document.querySelector(".categoriesPage");
+  cardsField.addEventListener("click", handleClick);
+
+  // hard stop game (user stop a game before finish it)
+  const slider: HTMLInputElement = document.querySelector(".switchModeInput");
+  const navItems: NodeListOf<Element> =
+    document.querySelectorAll(".navMenuItem");
+  slider.addEventListener("change", stopGame);
+  navItems.forEach((item) => {
+    item.addEventListener("click", stopGame);
   });
 }
 
@@ -107,6 +126,7 @@ function playBtnFunc(playBtn: HTMLInputElement) {
 
     // create game functionality
     loadedCardsArr = shuffle(loadedCardsArr);
+    console.log(loadedCardsArr);
     game(loadedCardsArr, 0);
   });
 }
