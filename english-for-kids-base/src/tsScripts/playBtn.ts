@@ -80,6 +80,9 @@ function game(arr, i: number, replayBtn: HTMLInputElement) {
 
     cardsField.removeEventListener("click", handleClick);
     replayBtn.removeEventListener("click", startReplay);
+
+    const removeAttempts: HTMLDivElement = document.querySelector(".attempts");
+    if (removeAttempts) removeAttempts.remove();
     
     const categoriesPageCont: HTMLDivElement = document.querySelector(".categoriesPageCont");
     const playBtn: HTMLInputElement = createPlayBtn();

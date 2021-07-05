@@ -67,14 +67,15 @@ function game(arr, i, replayBtn) {
         i = arr.length;
         cardsField.removeEventListener("click", handleClick);
         replayBtn.removeEventListener("click", startReplay);
+        const removeAttempts = document.querySelector(".attempts");
+        if (removeAttempts)
+            removeAttempts.remove();
         const categoriesPageCont = document.querySelector(".categoriesPageCont");
         const playBtn = createPlayBtn();
         categoriesPageCont.appendChild(playBtn);
         console.log("delete");
     }
     const chosenCard = arr[i];
-    console.log("chosenCard", chosenCard);
-    console.log("chosenCard.sound", chosenCard.sound);
     setTimeout(() => chosenCard.sound.play(), i === 0 ? 100 : 1500);
     function startReplay() {
         console.log("chosencard", chosenCard);
