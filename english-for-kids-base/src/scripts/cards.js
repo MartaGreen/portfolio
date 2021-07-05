@@ -75,6 +75,8 @@ export class CategoryCard extends Card {
     }
     renderPlay() {
         this.render();
+        this.sound = createAudio(this.audioSrc, ["sound"]);
+        this.cardContainer.appendChild(this.sound);
         return this.cardContainer;
     }
     renderTrain() {
@@ -84,8 +86,6 @@ export class CategoryCard extends Card {
         createCardName(canvConts[1], this.translate);
         const flipBtn = createFlipBtn();
         canvConts[0].appendChild(flipBtn);
-        this.sound = createAudio(this.audioSrc, ["sound"]);
-        this.cardContainer.appendChild(this.sound);
         this.flip();
         this.playSound();
         return this.cardContainer;

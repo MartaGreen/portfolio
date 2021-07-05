@@ -107,6 +107,9 @@ export class CategoryCard extends Card {
   renderPlay() {
     this.render();
 
+    this.sound = createAudio(this.audioSrc, ["sound"]);
+    this.cardContainer.appendChild(this.sound);
+
     return this.cardContainer;
   }
 
@@ -120,9 +123,6 @@ export class CategoryCard extends Card {
 
     const flipBtn = createFlipBtn();
     canvConts[0].appendChild(flipBtn);
-
-    this.sound = createAudio(this.audioSrc, ["sound"]);
-    this.cardContainer.appendChild(this.sound);
 
     this.flip();
     this.playSound();
