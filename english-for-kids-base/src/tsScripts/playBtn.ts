@@ -36,12 +36,9 @@ function createWrongAttempt() {
   return attemptCont;
 }
 
-function game(arr, i: number) {
+function game(arr, i: number, replayBtn: HTMLInputElement) {
   // checking user answer
   function handleClick(clickedObj) {
-    console.log(i);
-
-    console.log("target", clickedObj.target);
     if (
       clickedObj.target === chosenCard.cardContainer ||
       chosenCard.cardContainer.contains(clickedObj.target)
@@ -51,11 +48,12 @@ function game(arr, i: number) {
 
       const sound: HTMLAudioElement = document.querySelector(".correctAttempt");
       sound.play();
+      replayBtn.removeEventListener("click", startReplay);
 
       if (i < arr.length - 1) {
         cardsField.removeEventListener("click", handleClick);
         i += 1;
-        game(arr, i);
+        game(arr, i, replayBtn);
       } else {
         console.log("stop");
 
@@ -81,6 +79,7 @@ function game(arr, i: number) {
     i = arr.length;
 
     cardsField.removeEventListener("click", handleClick);
+    replayBtn.removeEventListener("click", startReplay);
     
     const categoriesPageCont: HTMLDivElement = document.querySelector(".categoriesPageCont");
     const playBtn: HTMLInputElement = createPlayBtn();
@@ -90,8 +89,13 @@ function game(arr, i: number) {
   }
 
   const chosenCard = arr[i];
-  console.log("chosenCard", chosenCard);
   setTimeout(() => chosenCard.sound.play(), i === 0? 100: 1500);
+
+  function startReplay() {
+    console.log("chosencard", chosenCard);
+    chosenCard.sound.play();
+  }
+  replayBtn.addEventListener("click", startReplay);
 
   const attempts: HTMLDivElement = document.querySelector(".attempts");
 
@@ -111,6 +115,10 @@ function game(arr, i: number) {
 function playBtnFunc(playBtn: HTMLInputElement) {
   playBtn.addEventListener("click", function playBtnEvent() {
     playBtn.removeEventListener("click", playBtnEvent);
+    removePlayBtn();
+    const replayBtn: HTMLInputElement = createReplayBtn();
+    const page: HTMLDivElement = document.querySelector(".categoriesPageCont");
+    page.appendChild(replayBtn);
 
     // rerender attempts field
     const categoriesPageCont: HTMLDivElement = document.querySelector(
@@ -132,9 +140,18 @@ function playBtnFunc(playBtn: HTMLInputElement) {
 
     // create game functionality
     loadedCardsArr = shuffle(loadedCardsArr);
-    console.log(loadedCardsArr);
-    game(loadedCardsArr, 0);
+    game(loadedCardsArr, 0, replayBtn);
   });
+}
+
+function createReplayBtn() {
+  const replayBtn: HTMLInputElement = document.createElement("input");
+  replayBtn.setAttribute("class", "replayBtn playBtn");
+  replayBtn.setAttribute("type", "button");
+  replayBtn.setAttribute("value", "replay")
+
+  // replayBtn.innerHTML = `<svg class="replayIcon" fill="orange" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 30 30" width="30px" height="30px"><path d="M 15 3 A 1.0001 1.0001 0 1 0 15 5 C 20.534534 5 25 9.4654664 25 15 C 25 20.534534 20.534534 25 15 25 C 9.4654664 25 5 20.534534 5 15 C 5 12.650241 5.8085376 10.496834 7.1601562 8.7929688 L 9 11 L 11 4 L 4 5 L 5.8671875 7.2402344 C 4.086665 9.3350655 3 12.041787 3 15 C 3 21.615466 8.3845336 27 15 27 C 21.615466 27 27 21.615466 27 15 C 27 8.3845336 21.615466 3 15 3 z"/></svg>`
+  return replayBtn;
 }
 
 function removePlayBtn() {
