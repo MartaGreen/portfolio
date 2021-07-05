@@ -49,6 +49,9 @@ function game(arr, i: number) {
       const attempt = createAttempt();
       attempts.appendChild(attempt);
 
+      const sound: HTMLAudioElement = document.querySelector(".correctAttempt");
+      sound.play();
+
       if (i < arr.length - 1) {
         cardsField.removeEventListener("click", handleClick);
         i += 1;
@@ -63,6 +66,9 @@ function game(arr, i: number) {
         return;
       }
     } else {
+      const sound: HTMLAudioElement = document.querySelector(".failAttempt");
+      sound.play();
+
       const attempt = createWrongAttempt();
       attempts.appendChild(attempt);
 
@@ -85,7 +91,7 @@ function game(arr, i: number) {
 
   const chosenCard = arr[i];
   console.log("chosenCard", chosenCard);
-  setTimeout(() => chosenCard.sound.play(), 500);
+  setTimeout(() => chosenCard.sound.play(), i === 0? 100: 1500);
 
   const attempts: HTMLDivElement = document.querySelector(".attempts");
 

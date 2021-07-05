@@ -17,6 +17,22 @@ const CATEGORIES_NAME_CARDS_SRC = [
 export const CATEGORIES_NAMES = [];
 export const CATEGORY_CARDS = {};
 
+const createAttemptSound = (cls: string, audioSrc: string) => {
+  const attempt: HTMLAudioElement = document.createElement("audio");
+  attempt.setAttribute("class", cls);
+  attempt.src = audioSrc;
+
+  return attempt;
+}
+const createAttemptsSounds = () => {
+  const correctAttempt: HTMLAudioElement = createAttemptSound("correctAttempt", "./sounds/correctAttemptSound.mp3");
+  const failAttempt: HTMLAudioElement = createAttemptSound("failAttempt", "./sounds/failAttemptSound.mp3");
+
+  const main: HTMLElement = document.querySelector("main");
+  main.appendChild(correctAttempt);
+  main.appendChild(failAttempt);
+}
+
 const renderSitchMode = () => {
   const switchMode: HTMLLabelElement = document.createElement("label");
   switchMode.setAttribute("class", "switchMode");
@@ -135,6 +151,8 @@ const pageMain = () => {
   main.appendChild(mainPageCont);
   categoriesPageCont.appendChild(categoriesPage);
   main.appendChild(categoriesPageCont);
+
+  createAttemptsSounds();
 };
 
 createMenu();

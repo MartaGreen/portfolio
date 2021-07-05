@@ -61,4 +61,7 @@ import "../assets/sounds/diseases/sneezeSound.mp3";
 import "../assets/sounds/diseases/sore_throatSound.mp3";
 import "../assets/sounds/diseases/stomachacheSound.mp3";
 import "../assets/sounds/diseases/toothacheSound.mp3";
+// attempts sound 
+import "../assets/sounds/attempts/correctAttemptSound.mp3";
+import "../assets/sounds/attempts/failAttemptSound.mp3";
 //# sourceMappingURL=soundsImport.js.map

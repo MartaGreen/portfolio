@@ -40,6 +40,8 @@ function game(arr, i) {
             chosenCard.cardContainer.contains(clickedObj.target)) {
             const attempt = createAttempt();
             attempts.appendChild(attempt);
+            const sound = document.querySelector(".correctAttempt");
+            sound.play();
             if (i < arr.length - 1) {
                 cardsField.removeEventListener("click", handleClick);
                 i += 1;
@@ -54,6 +56,8 @@ function game(arr, i) {
             }
         }
         else {
+            const sound = document.querySelector(".failAttempt");
+            sound.play();
             const attempt = createWrongAttempt();
             attempts.appendChild(attempt);
             console.log(false);
@@ -70,7 +74,7 @@ function game(arr, i) {
     }
     const chosenCard = arr[i];
     console.log("chosenCard", chosenCard);
-    setTimeout(() => chosenCard.sound.play(), 400);
+    setTimeout(() => chosenCard.sound.play(), i === 0 ? 100 : 1500);
     const attempts = document.querySelector(".attempts");
     const cardsField = document.querySelector(".categoriesPage");
     cardsField.addEventListener("click", handleClick);
