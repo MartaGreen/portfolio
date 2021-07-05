@@ -3,6 +3,8 @@ body {
   margin: 0 auto;
   background: linear-gradient(to bottom, #0e0e0e, #14b136);
 
+  font-family: Arial, Helvetica, sans-serif;
+
   &.playMode {
     background: linear-gradient(to bottom, rgb(77, 1, 1), orange);
 
@@ -308,6 +310,10 @@ body {
   }
 }
 
+.switchMode {
+  width: 100px;
+  height: 40px;
+}
 .switchModeSpan {
   position: absolute;
   cursor: pointer;
@@ -316,10 +322,10 @@ body {
   right: 0;
   bottom: 0;
 
-  width: 54px;
-  height: 30px;
+  width: 100px;
+  height: 40px;
 
-  background-color: #f2f2f2;
+  background-color: #4da560;
   -webkit-transition: 0.4s;
   transition: 0.4s;
 
@@ -327,25 +333,48 @@ body {
 }
 .switchModeSpan:before {
   position: absolute;
-  content: "";
-  height: 20px;
-  width: 20px;
+  content: "Train";
+
   left: 6px;
-  bottom: 5px;
-  background-color: white;
+  bottom: 3px;
+
+  height: 70%;
+  width: 45%;
+
+  background-color: #172c0a;
   -webkit-transition: 0.4s;
   transition: 0.4s;
+  border-radius: 5px;
+
+  color: white;
+  text-align: center;
+  padding-top: 5%;
 }
 
+// input:checked .switchModeSpan:before {
+//   position: absolute;
+//   content: "Play";
+//   height: 20px;
+//   width: 20px;
+//   left: 6px;
+//   bottom: 5px;
+//   background-color: red;
+//   -webkit-transition: 0.4s;
+//   transition: 0.4s;
+// }
+
 input:checked + .switchModeSpan {
-  background-color: #4f4f4f;
+  background-color: orange;
 }
 input:focus + .switchModeSpan {
-  box-shadow: 0 0 1px #4f4f4f;
+  box-shadow: 0 0 1px orange;
 }
 
 input:checked + .switchModeSpan:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
-  transform: translateX(26px);
+  transform: translateX(43px);
+
+  background-color: rgb(77, 1, 1);
+  content: "Play";
 }
