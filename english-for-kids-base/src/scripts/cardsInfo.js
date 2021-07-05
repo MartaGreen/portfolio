@@ -133,7 +133,7 @@ export const cards = {
             },
             {
                 word: "shirt",
-                translation: "футболка",
+                translation: "рубашка",
                 image: "./images/shirt.jpg",
                 audioSrc: "./sounds/shirtSound.mp3",
             },
@@ -157,7 +157,7 @@ export const cards = {
             },
             {
                 word: "t-shirt",
-                translation: "рубашка",
+                translation: "футболка",
                 image: "./images/t-shirt.jpg",
                 audioSrc: "./sounds/t-shirtSound.mp3",
             },
