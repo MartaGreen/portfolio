@@ -1,6 +1,7 @@
 import { CategoryName, CategoryCard } from "../scripts/cards";
 import { cards } from "../scripts/cardsInfo";
 import { openMenu } from "../scripts/pageFunc";
+import { createPlayBtn } from "../scripts/playBtn";
 
 const CATEGORIES_NAME_CARDS_SRC = [
   "emotions",
@@ -91,8 +92,11 @@ const pageMain = () => {
   document.body.appendChild(main);
 
   // main page rendering
+  const mainPageCont: HTMLDivElement = document.createElement("div");
+  mainPageCont.setAttribute("class", "mainPageCont page blockCont");
   const mainPage: HTMLDivElement = document.createElement("div");
-  mainPage.setAttribute("class", "page mainPage block");
+  mainPage.setAttribute("class", "mainPage block");
+  mainPageCont.appendChild(mainPage);
 
   CATEGORIES_NAME_CARDS_SRC.forEach((category) => {
     const card: CategoryName = new CategoryName(
@@ -120,11 +124,17 @@ const pageMain = () => {
   });
 
   // categories page rendering
+  const categoriesPageCont: HTMLDivElement = document.createElement("div");
+  categoriesPageCont.setAttribute("class", "categoriesPageCont blockCont");
   const categoriesPage: HTMLDivElement = document.createElement("div");
   categoriesPage.setAttribute("class", "categoriesPage block");
 
-  main.appendChild(mainPage);
-  main.appendChild(categoriesPage);
+  const playBtn: HTMLInputElement = createPlayBtn();
+  categoriesPageCont.appendChild(playBtn);
+
+  main.appendChild(mainPageCont);
+  categoriesPageCont.appendChild(categoriesPage);
+  main.appendChild(categoriesPageCont);
 };
 
 createMenu();

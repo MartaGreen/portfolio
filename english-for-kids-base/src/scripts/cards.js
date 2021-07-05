@@ -1,4 +1,4 @@
-import { CATEGORY_CARDS } from "../scripts/pageRender";
+import { CATEGORY_CARDS, CATEGORIES_NAMES } from "../scripts/pageRender";
 function createCard(src) {
     const canvContainer = document.createElement("div");
     canvContainer.setAttribute("class", "canvContainer");
@@ -51,7 +51,6 @@ class Card {
         this.name = name;
     }
     render() {
-        console.log("null card cont");
         this.cardContainer = document.createElement("div");
         this.cardContainer.setAttribute("class", "cardContainer");
         const canvContainer = createCard(this.src);
@@ -65,25 +64,28 @@ export class CategoryCard extends Card {
         this.translate = translate;
         this.audioSrc = audioSrc;
     }
-    renderPlay() {
+    render() {
         super.render();
-        console.log(this.stage);
         const backCanvContainer = createCard(this.src);
         this.cardContainer.appendChild(backCanvContainer);
         const canvConts = this.cardContainer.querySelectorAll(".canvContainer");
         canvConts[0].classList.add("frontCard");
         canvConts[1].classList.add("backCard");
-        this.sound = createAudio(this.audioSrc, ["sound"]);
-        this.cardContainer.appendChild(this.sound);
+        return this.cardContainer;
+    }
+    renderPlay() {
+        this.render();
         return this.cardContainer;
     }
     renderTrain() {
-        this.renderPlay();
+        this.render();
         const canvConts = this.cardContainer.querySelectorAll(".canvContainer");
         createCardName(canvConts[0], this.name);
         createCardName(canvConts[1], this.translate);
         const flipBtn = createFlipBtn();
         canvConts[0].appendChild(flipBtn);
+        this.sound = createAudio(this.audioSrc, ["sound"]);
+        this.cardContainer.appendChild(this.sound);
         this.flip();
         this.playSound();
         return this.cardContainer;
@@ -116,6 +118,7 @@ export class CategoryName extends Card {
     constructor(src, name) {
         super(src, name);
         this.stage = "train";
+        this.status = "static";
     }
     render() {
         super.render();
@@ -128,10 +131,15 @@ export class CategoryName extends Card {
         const addEventItems = [this.cardContainer, navPage];
         addEventItems.forEach((item) => {
             item.addEventListener("click", () => {
+                const lastLoaded = CATEGORIES_NAMES.find(category => category.status === "loaded");
+                if (lastLoaded)
+                    lastLoaded.status = "static";
+                this.status = "loaded";
                 const activeNavPage = document.querySelector(".navMenuItemActive");
                 activeNavPage.classList.remove("navMenuItemActive");
                 navPage.classList.add("navMenuItemActive");
-                const mainPage = document.querySelector(".mainPage");
+                const mainPageCont = document.querySelector(".mainPageCont");
+                const categoriesPageCont = document.querySelector(".categoriesPageCont");
                 const categoriesPage = document.querySelector(".categoriesPage");
                 categoriesPage.innerHTML = "";
                 const categoryCards = CATEGORY_CARDS[this.name];
@@ -144,8 +152,8 @@ export class CategoryName extends Card {
                     // categoryCard.playSound();
                     categoriesPage.appendChild(card);
                 });
-                mainPage.classList.remove("page");
-                categoriesPage.classList.add("page");
+                mainPageCont.classList.remove("page");
+                categoriesPageCont.classList.add("page");
             });
         });
     }
