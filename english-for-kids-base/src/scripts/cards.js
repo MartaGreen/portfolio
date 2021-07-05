@@ -84,6 +84,8 @@ export class CategoryCard extends Card {
         const canvConts = this.cardContainer.querySelectorAll(".canvContainer");
         createCardName(canvConts[0], this.name);
         createCardName(canvConts[1], this.translate);
+        this.sound = createAudio(this.audioSrc, ["sound"]);
+        this.cardContainer.appendChild(this.sound);
         const flipBtn = createFlipBtn();
         canvConts[0].appendChild(flipBtn);
         this.flip();

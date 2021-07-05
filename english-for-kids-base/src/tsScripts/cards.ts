@@ -121,6 +121,9 @@ export class CategoryCard extends Card {
     createCardName(<HTMLDivElement>canvConts[0], this.name);
     createCardName(<HTMLDivElement>canvConts[1], this.translate);
 
+    this.sound = createAudio(this.audioSrc, ["sound"]);
+    this.cardContainer.appendChild(this.sound);
+
     const flipBtn = createFlipBtn();
     canvConts[0].appendChild(flipBtn);
 
