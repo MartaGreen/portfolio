@@ -5,6 +5,33 @@ body {
 
   font-family: 'Roboto', sans-serif;
 
+  .finishImg {
+    visibility: hidden;
+  }
+
+  .finishOpen {
+    position: absolute;
+    left: 0;
+
+    width: 100%;
+    height: 100vh;
+
+    background: transparent;
+    z-index: 4000;
+
+    // background: url("./images/congrats.jpg");
+    .finishImg {
+      position: absolute;
+      width: 50%;
+      height: 50%;
+
+      top: 25%;
+      left: 25%;
+
+      visibility: visible;
+    }
+  }
+
   &.playMode {
     background: linear-gradient(to bottom, rgb(77, 1, 1), orange);
 

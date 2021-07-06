@@ -30,7 +30,7 @@ function createCardName(canvContainer: HTMLDivElement, name: string) {
   canvContainer.appendChild(cardName);
 }
 
-function createAudio(src: string, classes: string[]) {
+export function createAudio(src: string, classes: string[]) {
   const newAudio: HTMLAudioElement = document.createElement("audio");
   newAudio.src = src;
   classes.forEach((cls) => newAudio.classList.add(cls));

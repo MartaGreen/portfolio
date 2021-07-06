@@ -77,3 +77,6 @@ import "../assets/images/diseases/sneeze.jpg";
 import "../assets/images/diseases/sore_throat.jpg";
 import "../assets/images/diseases/stomachache.jpg";
 import "../assets/images/diseases/toothache.jpg";
+
+// finish images
+import "../assets/images/finish/good_job.png";

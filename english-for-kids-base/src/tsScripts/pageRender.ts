@@ -2,6 +2,7 @@ import { CategoryName, CategoryCard } from "../scripts/cards";
 import { cards } from "../scripts/cardsInfo";
 import { openMenu } from "../scripts/pageFunc";
 import { createPlayBtn } from "../scripts/playBtn";
+import { createAudio } from "./cards";
 
 const CATEGORIES_NAME_CARDS_SRC = [
   "emotions",
@@ -49,6 +50,18 @@ const renderSitchMode = () => {
 
   return switchMode;
 };
+
+const createFinish = () => {
+  const finishBlock: HTMLDivElement = document.createElement("div");
+  finishBlock.setAttribute("class", "finish");
+
+  const correctFinish: HTMLAudioElement = createAudio("./sounds/correctFinishSound.mp3", ["correctFinish"]);
+  const failFinish: HTMLAudioElement = createAudio("mp3/Ovation-Mike_Koenig-1061486511.mp3", ["failFinish"]);
+  finishBlock.appendChild(correctFinish);
+  finishBlock.appendChild(failFinish);
+
+  document.body.appendChild(finishBlock);
+}
 
 const pageHeader = () => {
   // header rendering
@@ -145,16 +158,17 @@ const pageMain = () => {
   const categoriesPage: HTMLDivElement = document.createElement("div");
   categoriesPage.setAttribute("class", "categoriesPage block");
 
-  const playBtn: HTMLInputElement = createPlayBtn();
-  categoriesPageCont.appendChild(playBtn);
-
   main.appendChild(mainPageCont);
   categoriesPageCont.appendChild(categoriesPage);
   main.appendChild(categoriesPageCont);
 
+  const playBtn: HTMLInputElement = createPlayBtn();
+  categoriesPageCont.appendChild(playBtn);
+
   createAttemptsSounds();
 };
 
+createFinish();
 createMenu();
 pageHeader();
 pageMain();

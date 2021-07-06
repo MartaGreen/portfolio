@@ -1,8 +1,73 @@
 import { CATEGORY_CARDS, CATEGORIES_NAMES } from "../scripts/pageRender";
 import { CategoryCard } from "../scripts/cards";
 
+let CORRECT_ATTEMPTS = 0;
+let FAIL_ATTEMPTS = 0;
+
 function shuffle(cardsArr) {
   return cardsArr.sort(() => Math.random() - 0.5);
+}
+
+function createFinishImg(src: string, cls: string) {
+  const canvas: HTMLCanvasElement = document.createElement("canvas");
+  canvas.setAttribute("class", cls);
+  const ctx: CanvasRenderingContext2D = canvas.getContext("2d");
+
+  const image = new Image();
+  image.src = src;
+
+  image.onload = () => {
+    image.width = canvas.width;
+    image.height = canvas.height;
+    ctx.drawImage(image, 0, 0, image.width, image.height);
+  };
+
+  return canvas;
+}
+
+function attemptFinish(cls: string, type: string) {
+  return new Promise((resolve, reject) => {
+    const finishBlock: HTMLDivElement = document.querySelector(".finish");
+    finishBlock.classList.add(cls);
+    let image: HTMLCanvasElement;
+
+    setTimeout(() => {
+      if (type === "correct") {
+        image = createFinishImg("./images/good_job.png", "finishImg");
+        finishBlock.appendChild(image);
+        const finishSound: HTMLAudioElement =
+          document.querySelector(".correctFinish");
+        finishSound.play();
+      }
+      setTimeout(() => {
+        finishBlock.classList.remove(cls);
+        image.remove();
+        resolve("done!");
+      }, 3500);
+    }, 1000);
+  });
+}
+
+function createFinish() {
+  if (CORRECT_ATTEMPTS === 8) {
+    if (!FAIL_ATTEMPTS) {
+      const resp = attemptFinish("finishOpen", "correct");
+      console.log("resp", resp);
+      resp.then(() => {
+        console.log("in")
+        const mainPage: HTMLElement = document.getElementById("Main_Page_nav");
+        mainPage.click();
+
+        FAIL_ATTEMPTS = 0;
+        CORRECT_ATTEMPTS = 0;
+      })
+    } else {
+      console.log("was wrang");
+    }
+  } else {
+    const playBtn: HTMLInputElement = document.querySelector(".playBtn");
+    playBtnFunc(playBtn);
+  }
 }
 
 function createAttempt() {
@@ -45,6 +110,7 @@ function game(arr, i: number, replayBtn: HTMLInputElement) {
     ) {
       const attempt = createAttempt();
       attempts.appendChild(attempt);
+      CORRECT_ATTEMPTS += 1;
 
       const sound: HTMLAudioElement = document.querySelector(".correctAttempt");
       sound.play();
@@ -56,14 +122,14 @@ function game(arr, i: number, replayBtn: HTMLInputElement) {
         game(arr, i, replayBtn);
       } else {
         console.log("stop");
-
-        const playBtn: HTMLInputElement = document.querySelector(".playBtn");
-        playBtnFunc(playBtn);
+        createFinish();
 
         cardsField.removeEventListener("click", handleClick);
         return;
       }
     } else {
+      FAIL_ATTEMPTS += 1;
+
       const sound: HTMLAudioElement = document.querySelector(".failAttempt");
       sound.play();
 
@@ -83,16 +149,14 @@ function game(arr, i: number, replayBtn: HTMLInputElement) {
 
     const removeAttempts: HTMLDivElement = document.querySelector(".attempts");
     if (removeAttempts) removeAttempts.remove();
-    
-    const categoriesPageCont: HTMLDivElement = document.querySelector(".categoriesPageCont");
-    const playBtn: HTMLInputElement = createPlayBtn();
-    categoriesPageCont.appendChild(playBtn);
+
+    createPlayBtn();
 
     console.log("delete");
   }
 
   const chosenCard = arr[i];
-  setTimeout(() => chosenCard.sound.play(), i === 0? 100: 1500);
+  setTimeout(() => chosenCard.sound.play(), i === 0 ? 100 : 1500);
 
   function startReplay() {
     console.log("chosencard", chosenCard);
@@ -151,13 +215,15 @@ function createReplayBtn() {
   const replayBtn: HTMLInputElement = document.createElement("input");
   replayBtn.setAttribute("class", "replayBtn playBtn");
   replayBtn.setAttribute("type", "button");
-  replayBtn.setAttribute("value", "replay")
+  replayBtn.setAttribute("value", "replay");
 
   // replayBtn.innerHTML = `<svg class="replayIcon" fill="orange" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 30 30" width="30px" height="30px"><path d="M 15 3 A 1.0001 1.0001 0 1 0 15 5 C 20.534534 5 25 9.4654664 25 15 C 25 20.534534 20.534534 25 15 25 C 9.4654664 25 5 20.534534 5 15 C 5 12.650241 5.8085376 10.496834 7.1601562 8.7929688 L 9 11 L 11 4 L 4 5 L 5.8671875 7.2402344 C 4.086665 9.3350655 3 12.041787 3 15 C 3 21.615466 8.3845336 27 15 27 C 21.615466 27 27 21.615466 27 15 C 27 8.3845336 21.615466 3 15 3 z"/></svg>`
   return replayBtn;
 }
 
 function removePlayBtn() {
+  const replayBtn: HTMLImageElement = document.querySelector(".replayBtn");
+  if (replayBtn) replayBtn.remove();
   const removePlayBtn: HTMLInputElement = document.querySelector(".playBtn");
   if (removePlayBtn) removePlayBtn.remove();
 }
@@ -165,11 +231,16 @@ function removePlayBtn() {
 export function createPlayBtn() {
   removePlayBtn();
 
+  const categoriesPageCont: HTMLDivElement = document.querySelector(
+    ".categoriesPageCont"
+  );
+
   const playBtn: HTMLInputElement = document.createElement("input");
   playBtn.setAttribute("class", "playBtn");
   playBtn.setAttribute("type", "button");
   playBtn.setAttribute("value", "play");
 
+  categoriesPageCont.appendChild(playBtn);
   playBtnFunc(playBtn);
 
   return playBtn;

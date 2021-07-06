@@ -20,7 +20,7 @@ function createCardName(canvContainer, name) {
     cardName.innerHTML = name;
     canvContainer.appendChild(cardName);
 }
-function createAudio(src, classes) {
+export function createAudio(src, classes) {
     const newAudio = document.createElement("audio");
     newAudio.src = src;
     classes.forEach((cls) => newAudio.classList.add(cls));

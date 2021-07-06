@@ -71,3 +71,6 @@ import "../assets/sounds/diseases/toothacheSound.mp3";
 // attempts sound 
 import "../assets/sounds/attempts/correctAttemptSound.mp3";
 import "../assets/sounds/attempts/failAttemptSound.mp3";
+
+// finish sound
+import "../assets/sounds/finish/correctFinishSound.mp3";

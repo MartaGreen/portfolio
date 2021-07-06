@@ -1,6 +1,63 @@
 import { CATEGORY_CARDS, CATEGORIES_NAMES } from "../scripts/pageRender";
+let CORRECT_ATTEMPTS = 0;
+let FAIL_ATTEMPTS = 0;
 function shuffle(cardsArr) {
     return cardsArr.sort(() => Math.random() - 0.5);
+}
+function createFinishImg(src, cls) {
+    const canvas = document.createElement("canvas");
+    canvas.setAttribute("class", cls);
+    const ctx = canvas.getContext("2d");
+    const image = new Image();
+    image.src = src;
+    image.onload = () => {
+        image.width = canvas.width;
+        image.height = canvas.height;
+        ctx.drawImage(image, 0, 0, image.width, image.height);
+    };
+    return canvas;
+}
+function attemptFinish(cls, type) {
+    return new Promise((resolve, reject) => {
+        const finishBlock = document.querySelector(".finish");
+        finishBlock.classList.add(cls);
+        let image;
+        setTimeout(() => {
+            if (type === "correct") {
+                image = createFinishImg("./images/good_job.png", "finishImg");
+                finishBlock.appendChild(image);
+                const finishSound = document.querySelector(".correctFinish");
+                finishSound.play();
+            }
+            setTimeout(() => {
+                finishBlock.classList.remove(cls);
+                image.remove();
+                resolve("done!");
+            }, 3500);
+        }, 1000);
+    });
+}
+function createFinish() {
+    if (CORRECT_ATTEMPTS === 8) {
+        if (!FAIL_ATTEMPTS) {
+            const resp = attemptFinish("finishOpen", "correct");
+            console.log("resp", resp);
+            resp.then(() => {
+                console.log("in");
+                const mainPage = document.getElementById("Main_Page_nav");
+                mainPage.click();
+                FAIL_ATTEMPTS = 0;
+                CORRECT_ATTEMPTS = 0;
+            });
+        }
+        else {
+            console.log("was wrang");
+        }
+    }
+    else {
+        const playBtn = document.querySelector(".playBtn");
+        playBtnFunc(playBtn);
+    }
 }
 function createAttempt() {
     const attemptCont = document.createElement("div");
@@ -38,6 +95,7 @@ function game(arr, i, replayBtn) {
             chosenCard.cardContainer.contains(clickedObj.target)) {
             const attempt = createAttempt();
             attempts.appendChild(attempt);
+            CORRECT_ATTEMPTS += 1;
             const sound = document.querySelector(".correctAttempt");
             sound.play();
             replayBtn.removeEventListener("click", startReplay);
@@ -48,13 +106,13 @@ function game(arr, i, replayBtn) {
             }
             else {
                 console.log("stop");
-                const playBtn = document.querySelector(".playBtn");
-                playBtnFunc(playBtn);
+                createFinish();
                 cardsField.removeEventListener("click", handleClick);
                 return;
             }
         }
         else {
+            FAIL_ATTEMPTS += 1;
             const sound = document.querySelector(".failAttempt");
             sound.play();
             const attempt = createWrongAttempt();
@@ -70,9 +128,7 @@ function game(arr, i, replayBtn) {
         const removeAttempts = document.querySelector(".attempts");
         if (removeAttempts)
             removeAttempts.remove();
-        const categoriesPageCont = document.querySelector(".categoriesPageCont");
-        const playBtn = createPlayBtn();
-        categoriesPageCont.appendChild(playBtn);
+        createPlayBtn();
         console.log("delete");
     }
     const chosenCard = arr[i];
@@ -125,16 +181,21 @@ function createReplayBtn() {
     return replayBtn;
 }
 function removePlayBtn() {
+    const replayBtn = document.querySelector(".replayBtn");
+    if (replayBtn)
+        replayBtn.remove();
     const removePlayBtn = document.querySelector(".playBtn");
     if (removePlayBtn)
         removePlayBtn.remove();
 }
 export function createPlayBtn() {
     removePlayBtn();
+    const categoriesPageCont = document.querySelector(".categoriesPageCont");
     const playBtn = document.createElement("input");
     playBtn.setAttribute("class", "playBtn");
     playBtn.setAttribute("type", "button");
     playBtn.setAttribute("value", "play");
+    categoriesPageCont.appendChild(playBtn);
     playBtnFunc(playBtn);
     return playBtn;
 }
