@@ -109,7 +109,8 @@ function game(arr, i, replayBtn) {
                 return;
             }
         }
-        else {
+        else if (clickedObj.target === chosenCard.cardContainer &&
+            chosenCard.cardContainer.contains(clickedObj.target)) {
             FAIL_ATTEMPTS += 1;
             const sound = document.querySelector(".failAttempt");
             sound.play();

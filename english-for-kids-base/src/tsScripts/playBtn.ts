@@ -125,7 +125,10 @@ function game(arr, i: number, replayBtn: HTMLInputElement) {
         cardsField.removeEventListener("click", handleClick);
         return;
       }
-    } else {
+    } else if (
+      clickedObj.target === chosenCard.cardContainer &&
+      chosenCard.cardContainer.contains(clickedObj.target)
+    ) {
       FAIL_ATTEMPTS += 1;
 
       const sound: HTMLAudioElement = document.querySelector(".failAttempt");

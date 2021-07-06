@@ -334,6 +334,10 @@ body {
 
   .page {
     visibility: visible;
+
+    .canvContainer {
+      z-index: 1000;
+    }
   }
 }
 
