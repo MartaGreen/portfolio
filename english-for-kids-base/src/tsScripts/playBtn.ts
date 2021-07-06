@@ -45,22 +45,20 @@ function attemptFinish(cls: string, type: string) {
         resolve("done!");
       }, 3500);
     }, 1000);
+  }).then(() => {
+    console.log("in");
+    const mainPage: HTMLElement = document.getElementById("Main_Page_nav");
+    mainPage.click();
+
+    FAIL_ATTEMPTS = 0;
+    CORRECT_ATTEMPTS = 0;
   });
 }
 
 function createFinish() {
   if (CORRECT_ATTEMPTS === 8) {
     if (!FAIL_ATTEMPTS) {
-      const resp = attemptFinish("finishOpen", "correct");
-      console.log("resp", resp);
-      resp.then(() => {
-        console.log("in")
-        const mainPage: HTMLElement = document.getElementById("Main_Page_nav");
-        mainPage.click();
-
-        FAIL_ATTEMPTS = 0;
-        CORRECT_ATTEMPTS = 0;
-      })
+      attemptFinish("finishOpen", "correct");
     } else {
       console.log("was wrang");
     }
