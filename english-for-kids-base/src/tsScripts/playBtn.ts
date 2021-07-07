@@ -38,6 +38,12 @@ function attemptFinish(cls: string, type: string) {
         const finishSound: HTMLAudioElement =
           document.querySelector(".correctFinish");
         finishSound.play();
+      } else if (type === "fail") {
+        image = createFinishImg("./images/fail.png", "finishImg");
+        finishBlock.appendChild(image);
+        const finishSound: HTMLAudioElement =
+          document.querySelector(".failFinish");
+        finishSound.play();
       }
       setTimeout(() => {
         finishBlock.classList.remove(cls);
@@ -61,6 +67,7 @@ function createFinish() {
       attemptFinish("finishOpen", "correct");
     } else {
       console.log("was wrang");
+      attemptFinish("finishOpen", "fail");
     }
   } else {
     const playBtn: HTMLInputElement = document.querySelector(".playBtn");
@@ -125,19 +132,20 @@ function game(arr, i: number, replayBtn: HTMLInputElement) {
         cardsField.removeEventListener("click", handleClick);
         return;
       }
-    } else if (
-      clickedObj.target === chosenCard.cardContainer &&
-      chosenCard.cardContainer.contains(clickedObj.target)
-    ) {
-      FAIL_ATTEMPTS += 1;
+    } else {
+      if (clickedObj.target !== document.querySelector(".categoriesPage"))
+      {
+        console.log(clickedObj.target);
+        FAIL_ATTEMPTS += 1;
 
-      const sound: HTMLAudioElement = document.querySelector(".failAttempt");
-      sound.play();
+        const sound: HTMLAudioElement = document.querySelector(".failAttempt");
+        sound.play();
 
-      const attempt = createWrongAttempt();
-      attempts.appendChild(attempt);
+        const attempt = createWrongAttempt();
+        attempts.appendChild(attempt);
 
-      console.log(false);
+        console.log(false);
+      }
     }
   }
 

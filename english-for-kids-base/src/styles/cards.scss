@@ -125,6 +125,10 @@ body {
 
     .menu {
       left: 0;
+
+      .navMenu {
+        position: sticky;
+      }
     }
   }
 }
@@ -155,7 +159,7 @@ body {
     font-size: 20px;
 
     .navMenuItem {
-      margin-bottom: 25%;
+      margin-bottom: 10%;
 
       &:hover {
         text-decoration: underline;

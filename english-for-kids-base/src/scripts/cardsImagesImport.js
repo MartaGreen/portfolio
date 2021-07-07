@@ -72,4 +72,5 @@ import "../assets/images/diseases/stomachache.jpg";
 import "../assets/images/diseases/toothache.jpg";
 // finish images
 import "../assets/images/finish/good_job.png";
+import "../assets/images/finish/fail.png";
 //# sourceMappingURL=cardsImagesImport.js.map

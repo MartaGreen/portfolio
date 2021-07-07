@@ -56,7 +56,7 @@ const createFinish = () => {
   finishBlock.setAttribute("class", "finish");
 
   const correctFinish: HTMLAudioElement = createAudio("./sounds/correctFinishSound.mp3", ["correctFinish"]);
-  const failFinish: HTMLAudioElement = createAudio("mp3/Ovation-Mike_Koenig-1061486511.mp3", ["failFinish"]);
+  const failFinish: HTMLAudioElement = createAudio("mp3/failFinishSound.mp3", ["failFinish"]);
   finishBlock.appendChild(correctFinish);
   finishBlock.appendChild(failFinish);
 

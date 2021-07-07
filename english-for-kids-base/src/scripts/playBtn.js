@@ -29,6 +29,12 @@ function attemptFinish(cls, type) {
                 const finishSound = document.querySelector(".correctFinish");
                 finishSound.play();
             }
+            else if (type === "fail") {
+                image = createFinishImg("./images/fail.png", "finishImg");
+                finishBlock.appendChild(image);
+                const finishSound = document.querySelector(".failFinish");
+                finishSound.play();
+            }
             setTimeout(() => {
                 finishBlock.classList.remove(cls);
                 image.remove();
@@ -50,6 +56,7 @@ function createFinish() {
         }
         else {
             console.log("was wrang");
+            attemptFinish("finishOpen", "fail");
         }
     }
     else {
@@ -109,14 +116,16 @@ function game(arr, i, replayBtn) {
                 return;
             }
         }
-        else if (clickedObj.target === chosenCard.cardContainer &&
-            chosenCard.cardContainer.contains(clickedObj.target)) {
-            FAIL_ATTEMPTS += 1;
-            const sound = document.querySelector(".failAttempt");
-            sound.play();
-            const attempt = createWrongAttempt();
-            attempts.appendChild(attempt);
-            console.log(false);
+        else {
+            if (clickedObj.target !== document.querySelector(".categoriesPage")) {
+                console.log(clickedObj.target);
+                FAIL_ATTEMPTS += 1;
+                const sound = document.querySelector(".failAttempt");
+                sound.play();
+                const attempt = createWrongAttempt();
+                attempts.appendChild(attempt);
+                console.log(false);
+            }
         }
     }
     function stopGame() {
