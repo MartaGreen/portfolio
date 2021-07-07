@@ -56,7 +56,7 @@ function attemptFinish(cls: string, type: string) {
       setTimeout(() => {
         finishBlock.classList.remove(cls);
         image.remove();
-        errorMsg.remove();
+        if (errorMsg) errorMsg.remove();
         resolve("done!");
       }, 3500);
     }, 1000);
