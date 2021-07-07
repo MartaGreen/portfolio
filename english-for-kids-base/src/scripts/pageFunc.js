@@ -38,22 +38,24 @@ export const openMenu = () => {
     const menuBtn = document.querySelector(".burgerMenu");
     menuBtn.addEventListener("click", () => {
         document.body.classList.toggle("openedMenu");
-        const main = document.querySelector(".main");
         // const header: HTMLElement = document.querySelector(".header");
         if (document.querySelector(".openedMenu")) {
-            main.addEventListener("click", hideMenu);
+            document.body.addEventListener("click", hideMenu);
             // header.addEventListener("click", hideMenu);
         }
         else {
-            main.removeEventListener("click", hideMenu);
+            document.body.removeEventListener("click", hideMenu);
             // header.removeEventListener("click", hideMenu);
         }
     });
     openMainPage();
     changeMode();
 };
-function hideMenu() {
-    document.body.classList.remove("openedMenu");
-    console.log("hide");
+function hideMenu(clickedObj) {
+    console.log(clickedObj.target);
+    const burgerMenu = document.querySelector(".burgerMenu");
+    if (!burgerMenu.contains(clickedObj.target)) {
+        document.body.classList.remove("openedMenu");
+    }
 }
 //# sourceMappingURL=pageFunc.js.map
