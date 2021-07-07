@@ -54,7 +54,11 @@ export const openMenu = () => {
 function hideMenu(clickedObj) {
     console.log(clickedObj.target);
     const burgerMenu = document.querySelector(".burgerMenu");
-    if (!burgerMenu.contains(clickedObj.target)) {
+    const menu = document.querySelector(".menu");
+    const navMenu = document.querySelector(".navMenu");
+    if (!burgerMenu.contains(clickedObj.target) &&
+        clickedObj.target !== menu &&
+        clickedObj.target !== navMenu) {
         document.body.classList.remove("openedMenu");
     }
 }
