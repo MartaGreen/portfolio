@@ -1,11 +1,10 @@
-import { cards } from "../scripts/cardsInfo";
 import { CATEGORY_CARDS, CATEGORIES_NAMES } from "../scripts/pageRender";
 
 function createCard(src: string) {
   const canvContainer: HTMLDivElement = document.createElement("div");
   canvContainer.setAttribute("class", "canvContainer");
 
-  const canvas: HTMLCanvasElement = document.createElement("canvas");
+  setTimeout(() => {const canvas: HTMLCanvasElement = document.createElement("canvas");
   const ctx: CanvasRenderingContext2D = canvas.getContext("2d");
 
   const image = new Image();
@@ -17,7 +16,7 @@ function createCard(src: string) {
     ctx.drawImage(image, 0, 0, image.width, image.height);
 
     canvContainer.appendChild(canvas);
-  };
+  };}, 0);
 
   return canvContainer;
 }

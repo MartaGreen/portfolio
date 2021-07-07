@@ -2,16 +2,18 @@ import { CATEGORY_CARDS, CATEGORIES_NAMES } from "../scripts/pageRender";
 function createCard(src) {
     const canvContainer = document.createElement("div");
     canvContainer.setAttribute("class", "canvContainer");
-    const canvas = document.createElement("canvas");
-    const ctx = canvas.getContext("2d");
-    const image = new Image();
-    image.src = src;
-    image.onload = () => {
-        image.width = canvas.width;
-        image.height = canvas.height;
-        ctx.drawImage(image, 0, 0, image.width, image.height);
-        canvContainer.appendChild(canvas);
-    };
+    setTimeout(() => {
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+        const image = new Image();
+        image.src = src;
+        image.onload = () => {
+            image.width = canvas.width;
+            image.height = canvas.height;
+            ctx.drawImage(image, 0, 0, image.width, image.height);
+            canvContainer.appendChild(canvas);
+        };
+    }, 0);
     return canvContainer;
 }
 function createCardName(canvContainer, name) {
