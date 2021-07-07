@@ -22,6 +22,7 @@ function attemptFinish(cls, type) {
         const finishBlock = document.querySelector(".finish");
         finishBlock.classList.add(cls);
         let image;
+        let errorMsg;
         setTimeout(() => {
             if (type === "correct") {
                 image = createFinishImg("./images/good_job.png", "finishImg");
@@ -32,12 +33,17 @@ function attemptFinish(cls, type) {
             else if (type === "fail") {
                 image = createFinishImg("./images/fail.png", "finishImg");
                 finishBlock.appendChild(image);
+                errorMsg = document.createElement("div");
+                errorMsg.setAttribute("class", "errorMsg");
+                errorMsg.innerHTML = `${FAIL_ATTEMPTS} Errors`;
+                finishBlock.appendChild(errorMsg);
                 const finishSound = document.querySelector(".failFinish");
                 finishSound.play();
             }
             setTimeout(() => {
                 finishBlock.classList.remove(cls);
                 image.remove();
+                errorMsg.remove();
                 resolve("done!");
             }, 3500);
         }, 1000);

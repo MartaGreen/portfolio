@@ -29,7 +29,9 @@ function attemptFinish(cls: string, type: string) {
   return new Promise((resolve, reject) => {
     const finishBlock: HTMLDivElement = document.querySelector(".finish");
     finishBlock.classList.add(cls);
+
     let image: HTMLCanvasElement;
+    let errorMsg: HTMLDivElement
 
     setTimeout(() => {
       if (type === "correct") {
@@ -41,6 +43,12 @@ function attemptFinish(cls: string, type: string) {
       } else if (type === "fail") {
         image = createFinishImg("./images/fail.png", "finishImg");
         finishBlock.appendChild(image);
+
+        errorMsg = document.createElement("div");
+        errorMsg.setAttribute("class", "errorMsg");
+        errorMsg.innerHTML = `${FAIL_ATTEMPTS} Errors`;
+        finishBlock.appendChild(errorMsg);
+
         const finishSound: HTMLAudioElement =
           document.querySelector(".failFinish");
         finishSound.play();
@@ -48,6 +56,7 @@ function attemptFinish(cls: string, type: string) {
       setTimeout(() => {
         finishBlock.classList.remove(cls);
         image.remove();
+        errorMsg.remove();
         resolve("done!");
       }, 3500);
     }, 1000);

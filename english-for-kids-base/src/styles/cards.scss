@@ -15,7 +15,7 @@ body {
   }
 
   .finishOpen {
-    position: absolute;
+    position: fixed;
     left: 0;
 
     width: 100%;
@@ -34,6 +34,26 @@ body {
       left: 25%;
 
       visibility: visible;
+      z-index: 3;
+    }
+
+    .errorMsg {
+      position: absolute;
+      top: 65%;
+      left: 52%;
+
+      width: 31%;
+      height: 11%;
+      text-align: center;
+
+      transform: rotate(-15deg);
+
+      font-size: 70px;
+      color: #500401;
+      font-weight: bold;
+
+      background: linear-gradient(45deg, red, yellow);
+      border-radius: 20px;
     }
   }
 
@@ -496,7 +516,7 @@ input:checked + .switchModeSpan:before {
 @media screen and (min-width: 1329px) {
   .block {
     grid-template-columns: repeat(4, 24%) !important;
-  }  
+  }
 }
 @media screen and (max-width: 1059px) {
   body {

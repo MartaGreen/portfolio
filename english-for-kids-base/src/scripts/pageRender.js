@@ -44,7 +44,7 @@ const createFinish = () => {
     const finishBlock = document.createElement("div");
     finishBlock.setAttribute("class", "finish");
     const correctFinish = createAudio("./sounds/correctFinishSound.mp3", ["correctFinish"]);
-    const failFinish = createAudio("mp3/failFinishSound.mp3", ["failFinish"]);
+    const failFinish = createAudio("./sounds/failFinishSound.mp3", ["failFinish"]);
     finishBlock.appendChild(correctFinish);
     finishBlock.appendChild(failFinish);
     document.body.appendChild(finishBlock);
