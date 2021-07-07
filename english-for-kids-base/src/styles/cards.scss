@@ -1,9 +1,10 @@
 html {
+  position: relative;
   height: auto;
 }
 body {
   width: 80%;
-  height: 700px;
+  height: 770px;
   margin: 0 auto;
   background: linear-gradient(to bottom, #0e0e0e, #14b136);
 
@@ -89,6 +90,19 @@ body {
 
     .menu {
       background: linear-gradient(to bottom, orange, rgb(77, 1, 1));
+    }
+
+    .footer {
+      background: linear-gradient(to bottom, rgb(31, 1, 1), rgb(58, 2, 2));
+
+      .courseLink:hover {
+        .courseImg {
+          fill: orange;
+        }
+      }
+      .githubLink:hover {
+        color: orange;
+      }
     }
   }
 
@@ -208,7 +222,7 @@ body {
   position: relative;
 
   width: 100%;
-  height: 75%;
+  height: 68%;
 
   .blockCont {
     position: relative;
@@ -220,6 +234,9 @@ body {
     .block {
       position: relative;
       height: 450px;
+      // max-width: 1063px;
+
+      margin: 0 auto;
 
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -422,28 +439,82 @@ input:checked + .switchModeSpan:before {
   content: "Play";
 }
 
+.footer {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
 
+  height: 13%;
+  width: 100vw;
+
+  background: linear-gradient(to bottom, #0e0e0e, #012409);
+
+  .footerItemCont {
+    display: flex;
+    justify-content: space-between;
+
+    position: absolute;
+    right: 10%;
+    top: 35%;
+
+    width: 220px;
+    height: 40px;
+
+    color: white;
+
+    .githubLink {
+      text-decoration: none;
+      color: white;
+    }
+
+    .courseImg {
+      width: 60px;
+      height: 30px;
+
+      fill: white;
+
+      g {
+        fill: black;
+      }
+    }
+
+    .courseLink:hover {
+      .courseImg {
+        fill: yellowgreen;
+      }
+    }
+    .githubLink:hover {
+      color: yellowgreen;
+    }
+  }
+}
+
+@media screen and (min-width: 1329px) {
+  .block {
+    grid-template-columns: repeat(4, 24%) !important;
+  }  
+}
 @media screen and (max-width: 1059px) {
   body {
-    height: 870px;
+    height: 1070px;
 
     .header {
       height: 10%;
     }
     .main {
-      height: 85%;
+      height: 70%;
     }
   }
 }
 @media screen and (max-width: 789px) {
   body {
-    height: 1070px;
+    height: 1270px;
 
     .header {
       height: 7%;
     }
     .main {
-      height: 90%;
+      height: 76%;
       .page {
         height: 94%;
       }
@@ -452,16 +523,19 @@ input:checked + .switchModeSpan:before {
 }
 @media screen and (max-width: 520px) {
   body {
-    height: 1950px;
+    height: 2250px;
 
     .header {
       height: 4%;
     }
     .main {
-      height: 94%;
+      height: 83%;
       .page {
         height: 96.5% !important;
       }
+    }
+    .footer {
+      height: 10%;
     }
   }
 }
