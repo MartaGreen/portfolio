@@ -4,7 +4,7 @@ import { openMenu } from "../scripts/pageFunc";
 import { createPlayBtn } from "../scripts/playBtn";
 import { createAudio } from "./cards";
 const CATEGORIES_NAME_CARDS_SRC = [
-    "emotions",
+    "house_stuff",
     "actions",
     "diseases",
     "clothes",
@@ -80,7 +80,7 @@ const createMenu = () => {
     navMenu.setAttribute("class", "navMenu");
     createMenuNavItem("Main Page", navMenu, "navMenuItem navMenuItemActive");
     CATEGORIES_NAME_CARDS_SRC.forEach((category) => {
-        createMenuNavItem(category, navMenu, "navMenuItem");
+        createMenuNavItem(category.split("_").join(" "), navMenu, "navMenuItem");
     });
     menu.appendChild(navMenu);
     document.body.appendChild(menu);

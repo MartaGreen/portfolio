@@ -1,12 +1,54 @@
 export const cards = {
-    emotions: {
-        mainImage: "./images/emotionsMain.jpg",
+    house_stuff: {
+        mainImage: "./images/houseStuffMain.jpg",
         data: [
             {
-                word: "",
-                translation: "",
-                image: "",
-                audioSrc: "",
+                word: "chair",
+                translation: "стул",
+                image: "./images/chair.jpg",
+                audioSrc: "./sounds/chairSound.mp3",
+            },
+            {
+                word: "table",
+                translation: "стол",
+                image: "./images/table.jpg",
+                audioSrc: "./sounds/tableSound.mp3",
+            },
+            {
+                word: "fridge",
+                translation: "холодильник",
+                image: "./images/fridge.jpg",
+                audioSrc: "./sounds/fridgeSound.mp3",
+            },
+            {
+                word: "carpet",
+                translation: "ковер",
+                image: "./images/carpet.jpg",
+                audioSrc: "./sounds/carpetSound.mp3",
+            },
+            {
+                word: "bed",
+                translation: "кровать",
+                image: "./images/bed.jpg",
+                audioSrc: "./sounds/bedSound.mp3",
+            },
+            {
+                word: "TV",
+                translation: "телевизор",
+                image: "./images/tv.jpg",
+                audioSrc: "./sounds/tvSound.mp3",
+            },
+            {
+                word: "wardrobe",
+                translation: "шкаф",
+                image: "./images/wardrobe.jpg",
+                audioSrc: "./sounds/wardrobeSound.mp3",
+            },
+            {
+                word: "sofa",
+                translation: "диван",
+                image: "./images/sofa.jpg",
+                audioSrc: "./sounds/sofaSound.mp3",
             },
         ],
     },

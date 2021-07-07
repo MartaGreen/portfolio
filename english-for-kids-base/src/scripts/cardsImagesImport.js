@@ -3,7 +3,7 @@ import "../assets/images/mainImages/animalsMain.jpg";
 import "../assets/images/mainImages/actionsMain.jpg";
 import "../assets/images/mainImages/clothesMain.jpg";
 import "../assets/images/mainImages/colorsMain.jpg";
-import "../assets/images/mainImages/emotionsMain.jpg";
+import "../assets/images/mainImages/houseStuffMain.jpg";
 import "../assets/images/mainImages/foodMain.jpg";
 import "../assets/images/mainImages/deseases.jpg";
 import "../assets/images/mainImages/transportMain.jpg";
@@ -70,6 +70,15 @@ import "../assets/images/diseases/sneeze.jpg";
 import "../assets/images/diseases/sore_throat.jpg";
 import "../assets/images/diseases/stomachache.jpg";
 import "../assets/images/diseases/toothache.jpg";
+// house stuff images
+import "../assets/images/houseStuff/bed.jpg";
+import "../assets/images/houseStuff/carpet.jpg";
+import "../assets/images/houseStuff/chair.jpg";
+import "../assets/images/houseStuff/fridge.jpg";
+import "../assets/images/houseStuff/sofa.jpg";
+import "../assets/images/houseStuff/table.jpg";
+import "../assets/images/houseStuff/tv.jpg";
+import "../assets/images/houseStuff/wardrobe.jpg";
 // finish images
 import "../assets/images/finish/good_job.png";
 import "../assets/images/finish/fail.png";

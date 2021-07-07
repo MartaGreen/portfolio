@@ -61,6 +61,15 @@ import "../assets/sounds/diseases/sneezeSound.mp3";
 import "../assets/sounds/diseases/sore_throatSound.mp3";
 import "../assets/sounds/diseases/stomachacheSound.mp3";
 import "../assets/sounds/diseases/toothacheSound.mp3";
+// house stuff sound
+import "../assets/sounds/houseStuff/bedSound.mp3";
+import "../assets/sounds/houseStuff/carpetSound.mp3";
+import "../assets/sounds/houseStuff/chairSound.mp3";
+import "../assets/sounds/houseStuff/fridgeSound.mp3";
+import "../assets/sounds/houseStuff/sofaSound.mp3";
+import "../assets/sounds/houseStuff/tableSound.mp3";
+import "../assets/sounds/houseStuff/tvSound.mp3";
+import "../assets/sounds/houseStuff/wardrobeSound.mp3";
 // attempts sound 
 import "../assets/sounds/attempts/correctAttemptSound.mp3";
 import "../assets/sounds/attempts/failAttemptSound.mp3";

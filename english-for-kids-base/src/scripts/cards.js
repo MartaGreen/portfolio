@@ -17,7 +17,7 @@ function createCard(src) {
 function createCardName(canvContainer, name) {
     const cardName = document.createElement("div");
     cardName.setAttribute("class", "cardName");
-    cardName.innerHTML = name;
+    cardName.innerHTML = name.split("_").join(" ");
     canvContainer.appendChild(cardName);
 }
 export function createAudio(src, classes) {

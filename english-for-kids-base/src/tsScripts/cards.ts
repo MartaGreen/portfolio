@@ -25,7 +25,7 @@ function createCard(src: string) {
 function createCardName(canvContainer: HTMLDivElement, name: string) {
   const cardName: HTMLDivElement = document.createElement("div");
   cardName.setAttribute("class", "cardName");
-  cardName.innerHTML = name;
+  cardName.innerHTML = name.split("_").join(" ");
 
   canvContainer.appendChild(cardName);
 }

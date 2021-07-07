@@ -82,6 +82,7 @@ body {
             .checkedBg {
               z-index: 5;
               cursor: default;
+              visibility: visible;
             }
           }
         }
@@ -299,6 +300,7 @@ body {
           border-radius: 10px;
 
           z-index: 0;
+          visibility: hidden;
         }
 
         .canvContainer {
