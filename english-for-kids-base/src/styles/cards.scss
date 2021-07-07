@@ -375,6 +375,11 @@ body {
 
       outline: none;
       border: 1px solid orange;
+
+      &.replayBtn {
+        width: 70%;
+        left: 15%;
+      }
     }
 
     &.page {
