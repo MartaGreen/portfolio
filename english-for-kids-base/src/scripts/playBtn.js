@@ -35,7 +35,7 @@ function attemptFinish(cls, type) {
                 finishBlock.appendChild(image);
                 errorMsg = document.createElement("div");
                 errorMsg.setAttribute("class", "errorMsg");
-                errorMsg.innerHTML = `${FAIL_ATTEMPTS} Errors`;
+                errorMsg.innerHTML = `${FAIL_ATTEMPTS} ${FAIL_ATTEMPTS === 1 ? "error" : "errors"}`;
                 finishBlock.appendChild(errorMsg);
                 const finishSound = document.querySelector(".failFinish");
                 finishSound.play();
@@ -102,35 +102,38 @@ function createWrongAttempt() {
 function game(arr, i, replayBtn) {
     // checking user answer
     function handleClick(clickedObj) {
-        if (clickedObj.target === chosenCard.cardContainer ||
-            chosenCard.cardContainer.contains(clickedObj.target)) {
-            const attempt = createAttempt();
-            attempts.appendChild(attempt);
-            CORRECT_ATTEMPTS += 1;
-            const sound = document.querySelector(".correctAttempt");
-            sound.play();
-            replayBtn.removeEventListener("click", startReplay);
-            if (i < arr.length - 1) {
-                cardsField.removeEventListener("click", handleClick);
-                i += 1;
-                game(arr, i, replayBtn);
+        if (!clickedObj.target.classList.contains("checkedBg")) {
+            if (clickedObj.target === chosenCard.cardContainer ||
+                chosenCard.cardContainer.contains(clickedObj.target)) {
+                const attempt = createAttempt();
+                attempts.appendChild(attempt);
+                CORRECT_ATTEMPTS += 1;
+                const sound = document.querySelector(".correctAttempt");
+                sound.play();
+                replayBtn.removeEventListener("click", startReplay);
+                chosenCard.cardContainer.classList.add("checked");
+                if (i < arr.length - 1) {
+                    cardsField.removeEventListener("click", handleClick);
+                    i += 1;
+                    game(arr, i, replayBtn);
+                }
+                else {
+                    console.log("stop");
+                    createFinish();
+                    cardsField.removeEventListener("click", handleClick);
+                    return;
+                }
             }
             else {
-                console.log("stop");
-                createFinish();
-                cardsField.removeEventListener("click", handleClick);
-                return;
-            }
-        }
-        else {
-            if (clickedObj.target !== document.querySelector(".categoriesPage")) {
-                console.log(clickedObj.target);
-                FAIL_ATTEMPTS += 1;
-                const sound = document.querySelector(".failAttempt");
-                sound.play();
-                const attempt = createWrongAttempt();
-                attempts.appendChild(attempt);
-                console.log(false);
+                if (clickedObj.target !== document.querySelector(".categoriesPage")) {
+                    console.log(clickedObj.target);
+                    FAIL_ATTEMPTS += 1;
+                    const sound = document.querySelector(".failAttempt");
+                    sound.play();
+                    const attempt = createWrongAttempt();
+                    attempts.appendChild(attempt);
+                    console.log(false);
+                }
             }
         }
     }

@@ -71,6 +71,9 @@ export class CategoryCard extends Card {
         const canvConts = this.cardContainer.querySelectorAll(".canvContainer");
         canvConts[0].classList.add("frontCard");
         canvConts[1].classList.add("backCard");
+        const checkerdBg = document.createElement("div");
+        checkerdBg.setAttribute("class", "checkedBg");
+        this.cardContainer.appendChild(checkerdBg);
         return this.cardContainer;
     }
     renderPlay() {
