@@ -1,9 +1,13 @@
+html {
+  height: auto;
+}
 body {
-  width: 900px;
+  width: 80%;
+  height: 700px;
   margin: 0 auto;
   background: linear-gradient(to bottom, #0e0e0e, #14b136);
 
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 
   .finishImg {
     visibility: hidden;
@@ -153,7 +157,7 @@ body {
 
 .header {
   position: relative;
-  height: 80px;
+  height: 10%;
   width: 100%;
 
   margin-bottom: 20px;
@@ -203,20 +207,25 @@ body {
 .main {
   position: relative;
 
+  width: 100%;
+  height: 75%;
+
   .blockCont {
     position: relative;
     height: 450px;
 
     visibility: hidden;
-    padding: 50px 0;
+    padding: 50px 0 0 0;
 
     .block {
       position: relative;
       height: 450px;
 
       display: grid;
-      grid-template-columns: repeat(4, 205px);
-      grid-gap: 2vw;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      // grid-gap: 1em;
+      grid-gap: 1rem;
+      grid-auto-flow: dense;
 
       .cardContainer {
         position: relative;
@@ -329,6 +338,9 @@ body {
       position: absolute;
       top: 0;
       left: 0;
+
+      width: 100%;
+      height: 95%;
     }
   }
 
@@ -408,4 +420,48 @@ input:checked + .switchModeSpan:before {
 
   background-color: rgb(77, 1, 1);
   content: "Play";
+}
+
+
+@media screen and (max-width: 1059px) {
+  body {
+    height: 870px;
+
+    .header {
+      height: 10%;
+    }
+    .main {
+      height: 85%;
+    }
+  }
+}
+@media screen and (max-width: 789px) {
+  body {
+    height: 1070px;
+
+    .header {
+      height: 7%;
+    }
+    .main {
+      height: 90%;
+      .page {
+        height: 94%;
+      }
+    }
+  }
+}
+@media screen and (max-width: 520px) {
+  body {
+    height: 1950px;
+
+    .header {
+      height: 4%;
+    }
+    .main {
+      height: 94%;
+      .page {
+        height: 96.5% !important;
+      }
+    }
+  }
 }
