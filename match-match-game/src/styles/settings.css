@@ -1,0 +1,66 @@
+h3 {
+  margin: 0;
+}
+select {
+  outline: none;
+}
+
+.main {
+  position: relative;
+}
+.selectField {
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
+
+  width: 1000px;
+  height: 252px;
+  top: 111px;
+
+  margin: 0 auto;
+  background-color: blue;
+
+  /* White / High Emphasis */
+  background: #ffffff;
+  /* vertical sheet */
+  box-shadow: 0px 6px 5px rgba(0, 0, 0, 0.24), 0px 9px 18px rgba(0, 0, 0, 0.18);
+}
+
+.selectField {
+  position: relative;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.selectField-item {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+}
+
+.difficulty {
+  width: 200px;
+  height: 50px;
+
+  padding-left: 5px;
+  font-size: 14px;
+
+  letter-spacing: 1.3px;
+
+  border: none;
+  border-bottom: 2px solid #e5e5e5;
+}
+
+.comingSoon {
+  position: absolute;
+  top: 80px;
+  right: 190px;
+
+  height: 400px;
+  width: 300px;
+
+  font-size: 40px;
+
+  text-transform: uppercase;
+}
