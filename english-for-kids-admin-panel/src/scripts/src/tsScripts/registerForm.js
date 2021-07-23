@@ -1,0 +1,31 @@
+import { createFormField, createCloseFormBtn, createCancelBtn } from "./userForms";
+export const createRegisterForm = () => {
+    const registerFormCont = document.createElement("div");
+    registerFormCont.setAttribute("class", "registerFormCont formContainer");
+    const userFormBg = document.createElement("div");
+    userFormBg.setAttribute("class", "userFormBg");
+    const registerForm = document.createElement("form");
+    registerForm.setAttribute("method", "POST");
+    registerForm.setAttribute("action", "/createUser");
+    const usernameField = createFormField("email", "username", "usernameField formField", "username");
+    const passField = createFormField("password", "password", "formField passwordField", "password");
+    const confirmField = createFormField("password", "confirmation", "confirmField formField", "confirmation");
+    const submitRegisterFormBtn = document.createElement("button");
+    submitRegisterFormBtn.setAttribute("class", "submitRegisterFormBtn submitFormBtn");
+    submitRegisterFormBtn.setAttribute("type", "submit");
+    const closeFormBtn = createCloseFormBtn();
+    const cancelBtn = createCancelBtn();
+    const fieldsCont = document.createElement("div");
+    fieldsCont.setAttribute("class", "fieldsCont");
+    fieldsCont.appendChild(usernameField);
+    fieldsCont.appendChild(passField);
+    fieldsCont.appendChild(confirmField);
+    registerForm.appendChild(fieldsCont);
+    registerForm.appendChild(submitRegisterFormBtn);
+    registerForm.appendChild(closeFormBtn);
+    registerForm.appendChild(cancelBtn);
+    registerFormCont.appendChild(registerForm);
+    userFormBg.appendChild(registerFormCont);
+    document.body.appendChild(userFormBg);
+};
+//# sourceMappingURL=registerForm.js.map
