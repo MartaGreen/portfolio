@@ -1,0 +1,135 @@
+button,
+input {
+  outline: none;
+}
+
+.navBtn {
+  position: absolute;
+  top: 10px;
+
+  width: 100px;
+  height: 25px;
+
+  text-transform: uppercase;
+  font-size: 10px;
+  cursor: pointer;
+
+  background-color: rgb(178, 238, 119);
+  border-radius: 5px;
+
+  &.toGarage {
+    left: 10px;
+  }
+  &.toWinners {
+    left: 120px;
+  }
+
+  &:hover {
+    background-color: rgb(255, 248, 144);
+  }
+}
+
+.settingsFields {
+  position: absolute;
+  top: 50px;
+  left: 10px;
+
+  .settingsField {
+    height: 30px;
+
+    margin-bottom: 9px;
+
+    .carName {
+      width: 170px;
+      height: 23px;
+      
+      border-radius: 7px;
+      padding-left: 10px;
+
+      &.emptyName {
+        border: 2px red solid;
+      }
+    }
+    .carColor {
+      height: 19px;
+
+      border-radius: 5px;
+    }
+    .carBtn {
+      text-transform: uppercase;
+      font-size: 10px;
+
+      height: 27px;
+
+      cursor: pointer;
+
+      border-radius: 7px;
+      background-color: rgb(255, 248, 144);
+
+      &.delete {
+        width: 110px;
+      }
+    }
+
+    &.notActive {
+      .carName {
+        pointer-events: none;
+        background-color: gray;
+      }
+      .carColor {
+        pointer-events: none;
+        background-color: gray;
+      }
+      .carBtn {
+        background-color: gray;
+        color: rgb(85, 84, 84);
+        cursor: default;
+      }
+    }
+  }
+
+  .settingsBtnContainer {
+    .settingsBtn {
+      width: 75px;
+      height: 23px;
+
+      background-color: rgb(255, 248, 144);
+      font-size: 10px;
+      text-transform: uppercase;
+      cursor: pointer;
+
+      border-radius: 7px;
+
+      &.generate {
+        width: 142px;
+      }
+    }
+  }
+}
+
+.pagesBtns {
+  position: absolute;
+  top: 850px;
+
+  .pageBtn {
+    width: 80px;
+    height: 20px;
+
+    background-color: rgb(255, 248, 144);
+    border-radius: 5px;
+    cursor: pointer;
+
+    font-size: 10px;
+    text-transform: uppercase;
+    color:rgb(36, 38, 39);
+
+    margin-bottom: 20px;
+    margin-left: 10px;
+
+    &.blockedBtn {
+      background-color: gray;
+      color: rgb(85, 84, 84);
+      cursor: default;
+    }
+  }
+}
