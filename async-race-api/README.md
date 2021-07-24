@@ -1,5 +1,4 @@
-# async-race-api
-Api for Rolling Scopes School task "Async Race".
+https://martagreen.github.io/portfolio/async-race-api/dist/
 
 ## Setup and Running
 
