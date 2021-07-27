@@ -1,0 +1,431 @@
+body {
+  height: 770px;
+
+  font-family: "Roboto", sans-serif;
+}
+
+.header {
+  position: relative;
+  height: 13%;
+  width: 100%;
+
+  background: linear-gradient(to bottom, #0e0e0e, #14b136);
+  color: white;
+
+  .navPanel {
+    position: absolute;
+    top: 30%;
+    left: 11%;
+
+    width: 17%;
+    height: 40%;
+
+    display: flex;
+    justify-content: space-between;
+
+    .navItem {
+      &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+      &.active {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .logOut {
+    position: absolute;
+    top: 30%;
+    right: 11%;
+
+    width: 7%;
+    height: 40%;
+
+    &:hover {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+}
+
+.main {
+  position: relative;
+  margin: 5% auto;
+  max-width: 1063px;
+  height: 100vh;
+
+  .block {
+    position: absolute;
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 1rem;
+    grid-auto-flow: dense;
+
+    visibility: hidden;
+    z-index: 1;
+
+    &.visual {
+      visibility: visible;
+      z-index: 3;
+    }
+
+    .categoryCont {
+      position: relative;
+      height: 200px;
+
+      border: 1px solid gray;
+      border-radius: 5%;
+      transition: 0.3s;
+      box-shadow: 0 1px 3px 1px #b1acac;
+
+      .warningMsg {
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        color: red;
+      }
+
+      .categoryTitle {
+        width: 100%;
+        text-align: center;
+      }
+      .btnIconCont {
+        position: absolute;
+        right: 3%;
+        top: 4%;
+
+        width: 10%;
+        height: 10%;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      .newCategoryBtnCont {
+        position: absolute;
+        top: 30%;
+        left: 25%;
+        width: 45%;
+        height: 45%;
+
+        border-radius: 50%;
+
+        &:hover {
+          cursor: pointer;
+          svg {
+            fill: rgb(137, 226, 4);
+          }
+        }
+      }
+
+      .wordsCount {
+        position: absolute;
+        top: 40%;
+        left: 15%;
+      }
+
+      &:hover {
+        box-shadow: 0 3px 6px 3px #b1acac;
+      }
+
+      &.creation {
+        .categoryNameField {
+          position: absolute;
+          top: 40%;
+          left: 15%;
+
+          width: 70%;
+          height: 10%;
+
+          border: none;
+          border-bottom: 2px solid gray;
+          font-size: 12px;
+          outline: none;
+        }
+        .uploadCategoryImg {
+          position: absolute;
+          top: 60%;
+          left: 15%;
+
+          width: 70%;
+        }
+        .creationBtnCont {
+          position: absolute;
+          top: 80%;
+          left: 15%;
+
+          width: 70%;
+
+          display: flex;
+          justify-content: space-between;
+
+          .creationBtn {
+            width: 45%;
+
+            font-size: 12px;
+
+            text-transform: uppercase;
+            outline: none;
+            border-radius: 5px;
+            cursor: pointer;
+
+            &.cancelCreation {
+              border: 1px solid red;
+              background: rgb(252, 143, 143);
+            }
+            &.confirmCreation {
+              border: 1px solid rgb(2, 126, 8);
+              background: rgb(193, 230, 138);
+            }
+          }
+        }
+      }
+
+      .categoryBtnsCont {
+        position: absolute;
+        top: 80%;
+        left: 15%;
+
+        width: 70%;
+
+        display: flex;
+        justify-content: space-between;
+
+        .categoryBtn {
+          width: 45%;
+          font-size: 12px;
+
+          text-transform: uppercase;
+          outline: none;
+          border-radius: 5px;
+          cursor: pointer;
+
+          border: 1px solid rgb(10, 114, 10);
+          background: rgb(25, 209, 25);
+
+          &:hover {
+            background: rgb(226, 252, 226);
+          }
+        }
+      }
+
+      .seeCategoryPic {
+        position: absolute;
+        top: 55%;
+        left: 15%;
+
+        text-decoration: none;
+        color: rgb(2, 126, 8);
+
+        &:hover {
+          color: orange;
+          cursor: pointer;
+        }
+      }
+
+      & .updateSample {
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        width: 100%;
+
+        background: white;
+        z-index: 1000;
+      }
+    }
+
+    .cardCont {
+      position: relative;
+      height: 330px;
+
+      border: 1px solid gray;
+      border-radius: 5%;
+      transition: 0.3s;
+      box-shadow: 0 1px 3px 1px #b1acac;
+
+      & .updateSample {
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        width: 100%;
+
+        background: white;
+        z-index: 1000;
+      }
+
+      .warningMsg {
+        position: absolute;
+        top: 5%;
+
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+
+        font-size: 15px;
+        color: red;
+      }
+
+      .btnIconCont {
+        position: absolute;
+        right: 3%;
+        top: 4%;
+
+        width: 10%;
+        height: 10%;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      .fieldsCont {
+        position: absolute;
+        top: 15%;
+        left: 15%;
+
+        width: 70%;
+
+        .fieldCont {
+          display: flex;
+          justify-content: space-between;
+
+          margin-bottom: 7%;
+
+          .listenSound {
+            &:hover {
+              cursor: pointer;
+              color: orange;
+              max-width: 70%;
+            }
+          }
+
+          &.imageField {
+            flex-direction: column;
+            b {
+              margin-bottom: 5%;
+            }
+            .canvContainer {
+              canvas {
+                width: 100%;
+              }
+            }
+          }
+        }
+      }
+
+      .updateBtn {
+        position: absolute;
+        bottom: 5%;
+        left: 15%;
+
+        width: 70%;
+        height: 10%;
+
+        border: 1px solid rgb(5, 161, 5);
+        color: rgb(5, 161, 5);
+        background: transparent;
+        border-radius: 5px;
+
+        &:hover {
+          cursor: pointer;
+          border: 1px solid orange;
+          color: orange;
+        }
+      }
+
+      .cardTitle {
+        position: absolute;
+        top: 10%;
+
+        width: 100%;
+        text-align: center;
+      }
+
+      .newCategoryBtnCont {
+        position: absolute;
+        top: 30%;
+        left: 15%;
+
+        width: 70%;
+        height: 70%;
+
+        &:hover {
+          svg {
+            cursor: pointer;
+            fill: rgb(137, 226, 4);
+          }
+        }
+      }
+
+      .wordFieldCont {
+        position: absolute;
+        top: 15%;
+        left: 15%;
+
+        width: 70%;
+
+        .wordField {
+          outline: none;
+          border: none;
+          border-bottom: 1px solid black;
+
+          font-size: 15px;
+          width: 100%;
+
+          margin-bottom: 7%;
+        }
+      }
+      .fileFieldCont {
+        position: absolute;
+        top: 45%;
+        left: 15%;
+
+        width: 70%;
+
+        .fileField {
+          display: flex;
+          justify-content: space-between;
+
+          margin-bottom: 7%;
+
+          .fileFieldName {
+            font-weight: bold;
+          }
+        }
+      }
+      .cardBtnCont {
+        position: absolute;
+        top: 70%;
+        left: 15%;
+
+        width: 70%;
+
+        .cardBtn {
+          width: 100%;
+
+          background: transparent;
+          border-radius: 5px;
+
+          outline: none;
+          cursor: pointer;
+
+          &.confirmBtn {
+            border: 1px solid rgb(5, 161, 5);
+            color: rgb(5, 161, 5);
+            margin-bottom: 7%;
+          }
+          &.cancelBtn {
+            border: 1px solid red;
+            color: red;
+          }
+        }
+      }
+    }
+  }
+}

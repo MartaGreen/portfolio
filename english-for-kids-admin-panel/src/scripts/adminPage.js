@@ -1,0 +1,42 @@
+import { renderCategories, backToCategories, logoutFunc } from "./adminCategories";
+import { createNewCategory } from "./adminCategoriesNames";
+const createHeader = () => {
+    const header = document.createElement("header");
+    header.setAttribute("class", "header");
+    const navPanel = document.createElement("nav");
+    navPanel.setAttribute("class", "navPanel");
+    const categories = document.createElement("span");
+    categories.setAttribute("class", "categoriesNav navItem");
+    categories.innerHTML = "Categories";
+    categories.addEventListener("click", backToCategories);
+    const words = document.createElement("span");
+    words.setAttribute("class", "words navItem");
+    words.innerHTML = "Words";
+    navPanel.appendChild(categories);
+    navPanel.appendChild(words);
+    const logOut = document.createElement("span");
+    logOut.setAttribute("class", "logOut");
+    logOut.innerHTML = "Log out";
+    logOut.addEventListener("click", logoutFunc);
+    header.appendChild(navPanel);
+    header.appendChild(logOut);
+    document.body.appendChild(header);
+};
+const createMain = () => {
+    const main = document.createElement("main");
+    main.setAttribute("class", "main");
+    const categoriesBlock = document.createElement("div");
+    categoriesBlock.setAttribute("class", "block categoriesBlock visual");
+    const cardsBlock = document.createElement("div");
+    cardsBlock.setAttribute("class", "block cardsBlock");
+    const newCat = new createNewCategory();
+    const renderNewCat = newCat.render();
+    categoriesBlock.appendChild(renderNewCat);
+    renderCategories(categoriesBlock, renderNewCat);
+    main.appendChild(categoriesBlock);
+    main.appendChild(cardsBlock);
+    document.body.appendChild(main);
+};
+createHeader();
+createMain();
+//# sourceMappingURL=adminPage.js.map

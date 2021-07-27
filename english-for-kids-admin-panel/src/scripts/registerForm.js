@@ -1,0 +1,33 @@
+import { createBtn } from "./shared";
+import { createFormField, createCloseFormBtn, createCancelBtn, submitFunc } from "./userForms";
+export const createRegisterForm = () => {
+    const registerFormCont = document.createElement("div");
+    registerFormCont.setAttribute("class", "registerFormCont formContainer");
+    const userFormBg = document.createElement("div");
+    userFormBg.setAttribute("class", "userFormBg");
+    const registerForm = document.createElement("form");
+    const usernameField = createFormField("email", "username", "usernameField formField", "username");
+    const passField = createFormField("password", "password", "formField passwordField", "password");
+    const confirmField = createFormField("password", "confirmation", "confirmField formField", "confirmation");
+    const submitRegisterFormBtn = createBtn("submitRegisterFormBtn submitFormBtn", "register");
+    submitFunc(submitRegisterFormBtn);
+    const closeFormBtn = createCloseFormBtn();
+    const cancelBtn = createCancelBtn();
+    const fieldsCont = document.createElement("div");
+    fieldsCont.setAttribute("class", "fieldsCont");
+    fieldsCont.appendChild(usernameField);
+    fieldsCont.appendChild(passField);
+    fieldsCont.appendChild(confirmField);
+    registerForm.appendChild(fieldsCont);
+    registerForm.appendChild(submitRegisterFormBtn);
+    registerForm.appendChild(closeFormBtn);
+    registerForm.appendChild(cancelBtn);
+    const msg = document.createElement("div");
+    msg.classList.add("msg");
+    msg.innerHTML = "Доделываю админ панель. Пожалуйста, подождите :)";
+    registerFormCont.appendChild(msg);
+    registerFormCont.appendChild(registerForm);
+    userFormBg.appendChild(registerFormCont);
+    document.body.appendChild(userFormBg);
+};
+//# sourceMappingURL=registerForm.js.map
