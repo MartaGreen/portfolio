@@ -1,0 +1,182 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>reveal.js</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/league.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	<link rel="stylesheet" href="myFiles/style.scss">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>Web Audio Api</section>
+
+			<section>
+				<h2>Web audio aplication</h2>
+				<p>The Web Audio API is a high-level JavaScript API for
+					processing and synthesizing audio in web applications.
+					It gives web developers tools to add effects to audio,
+					create audio visualizations, generate audio, and much more.</p>
+			</section>
+
+			<section>
+				<h2>History</h2>
+				<img class="r-frame" style="background: white;" width="700" height="300" data-src="myFiles/images/evolution.png"
+					alt="history">
+			</section>
+			<section>
+				<h2>History</h2>
+				<img class="r-frame" style="background: none; border: none" width="400" height="400"
+					data-src="myFiles/images/audio_and_webAudio.png" alt="difference">
+			</section>
+
+			<section id="fragments">
+				<h2>Application</h2>
+				<p class="fragment">Music</p>
+				<p class="fragment">Live audio / Video streaming</p>
+				<p class="fragment">Games</p>
+				<p class="fragment">Audiovisual arts</p>
+			</section>
+
+			<section>
+				<section>
+					<h2>How it works</h2>
+					<img class="r-frame" style="background: rgba(255,255,255,0.1);" width="700" height="300"
+						data-src="myFiles/images/algorythm.png" alt="algorythm">
+				</section>
+
+				<section>
+					<h2>Nodes Examples</h2>
+					<ul>
+						<li>Gain Node</li>
+						<li>Filter Nodes</li>
+						<li>Analyser Node</li>
+					</ul>
+				</section>
+			</section>
+
+			<section data-auto-animate>
+				<h2>Demo 1 code</h2>
+				<pre data-id="code-animation"><code data-trim data-line-numbers>
+					const ctx = new (window.AudioContext 
+						                    || window.webkitAudioContext)();
+				</code></pre>
+			</section>
+			<section data-auto-animate>
+				<h2>Demo 1 code</h2>
+				<pre data-id="code-animation"><code data-trim data-line-numbers>
+					const ctx = new (window.AudioContext 
+						                    || window.webkitAudioContext)();
+
+					const osc = ctx.createOscillator();
+				</code></pre>
+			</section>
+			<section data-auto-animate>
+				<h2>Demo 1 code</h2>
+				<pre data-id="code-animation"><code data-trim data-line-numbers="|5|6">
+					const ctx = new (window.AudioContext 
+						                    || window.webkitAudioContext)();
+
+				const osc = ctx.createOscillator();
+				osc.start();
+				osc.connect(ctx.destination);
+				</code></pre>
+			</section>
+			<section data-auto-animate>
+				<h2>Demo 1 code</h2>
+				<pre data-id="code-animation"><code data-trim data-line-numbers>
+					const ctx = new (window.AudioContext 
+						                    || window.webkitAudioContext)();
+
+				const osc = ctx.createOscillator();
+				osc.start();
+				osc.connect(ctx.destination);
+				osc.stop(ctx.currentTime + 2);
+				</code></pre>
+			</section>
+			<section data-auto-animate>
+				<h2>Demo 1 code</h2>
+				<pre data-id="code-animation"><code data-trim data-line-numbers="4,5,10">
+					const ctx = new (window.AudioContext 
+						                    || window.webkitAudioContext)();
+
+						const startBtn = document.querySelector(".startBtn");
+						startBtn.addEventListener("click", () => {
+							const osc = ctx.createOscillator();
+							osc.start();
+							osc.connect(ctx.destination);
+							osc.stop(ctx.currentTime + 2);
+						})
+				</code></pre>
+			</section>
+
+			<section class="helloWorld">
+				<h2>Demo</h2>
+				<button class="startBtn">start</button>
+			</section>
+
+			<section data-auto-animate>
+				<h2 data-id="code-title">Hello World</h2>
+				<pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers="|8-10|9,13"><script type="text/template">
+					const ctx = new (window.AudioContext 
+						                    || window.webkitAudioContext)();
+					
+					const startBtn = document.querySelector(".startBtn");
+					startBtn.addEventListener("click", () => {
+						const osc = ctx.createOscillator();
+					
+						const volume = ctx.createGain();
+						volume.connect(ctx.destination);
+						volume.gain.value=0.1;
+
+						osc.start();
+						osc.connect(volume);
+						osc.stop(ctx.currentTime + 2);
+					});
+					</script></code></pre>
+			</section>
+
+			<section class="helloWorld">
+				<h2>Demo</h2>
+				<button class="volume volumeDown">down</button>
+				<button class="startBtn volumeMin">start</button>
+				<button class="volume volumeUp">up</button>
+			</section>
+
+			<section data-auto-animate>
+				<h2 data-id="box" style="height: 200px; color: rgb(212, 47, 47);">Thanks for attention</h2>
+			</section>
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+		});
+	</script>
+	<script src="myFiles/script.js"></script>
+	<script src="myFiles/styles.js"></script>
+	<script src="myFiles/volume.js"></script>
+</body>
+
+</html>
